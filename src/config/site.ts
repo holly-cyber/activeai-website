@@ -21,8 +21,8 @@ export const COMPANY = {
   legalName: 'Active AI Ltd',
   number: '16499926',
   location: 'Shap, Cumbria',
-  /** Registered address used in the legal pages. Postcode to be added. */
-  address: 'The Rockery, Shap, Cumbria',
+  /** Registered address used in the legal pages and About page. */
+  address: 'The Rockery, Shap, Cumbria, CA10 3LY',
 } as const;
 
 export const CONTACT = {
