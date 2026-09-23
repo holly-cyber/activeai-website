@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import Phone from '../Phone.astro';
+import { SCORE, withScore } from '../../config/site';
+const blocks = (await getCollection('engage')).sort((a, b) => a.data.order - b.data.order);
+---
+<section id="engage" class="band band--navy" aria-labelledby="engage-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How athletes engage</p>
+      <h2 id="engage-title">Three ways in. One momentum engine.</h2>
+      <p class="lede muted">A group run, a challenge milestone, a new route explored: every interaction feeds the {SCORE.name} in real time.</p>
+    </div>
+
+    <div class="tabs" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Engagement features" hidden>
+        {blocks.map(({ id, data }, i) => (
+          <button role="tab" type="button" id={`tab-${id}`} aria-controls={`panel-${id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+            <span class="label">{data.eyebrow}</span>
+            <span class="tt">{data.title}</span>
+          </button>
+        ))}
+      </div>
+
+      {blocks.map(({ id, data }) => (
+        <article class="panel" id={`panel-${id}`} aria-labelledby={`h-${id}`}>
+          <div class="text">
+            <p class="eyebrow">{data.eyebrow}</p>
+            <h3 id={`h-${id}`}>{data.title}</h3>
+            <p class="muted">{data.intro}</p>
+            <dl class="stats">
+              {data.stats.map((s) => (
+                <div>
+                  <dt class="v">{s.value}</dt>
+                  <dd>{withScore(s.text)} <span class="tag">{s.label}</span></dd>
+                </div>
+              ))}
+            </dl>
+            <ul role="list" class="points">{data.points.map((p) => <li>{p}</li>)}</ul>
+            <p class="privacy"><span class="label">Athlete-first</span> {data.privacy}</p>
+          </div>
+          <div class:list={['screens', `n${data.screens.length}`]}>
+            {data.screens.map((s) => <Phone screen={s.name} alt={s.alt} />)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Tabs on desktop, stacked panels on mobile (and without JavaScript).
+  const root = document.querySelector<HTMLElement>('[data-tabs]');
+  if (root) {
+    const list = root.querySelector<HTMLElement>('[role="tablist"]')!;
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')!)!);
+    const mq = window.matchMedia('(min-width: 900px)');
+    let current = 0;
+
+    const select = (i: number, focus = false) => {
+      current = i;
+      tabs.forEach((t, j) => {
+        const on = j === i;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((p, j) => (p.hidden = j !== i));
+      if (focus) tabs[i].focus();
+    };
+
+    const apply = () => {
+      if (mq.matches) {
+        list.hidden = false;
+        panels.forEach((p, j) => { p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[j].id); p.tabIndex = 0; });
+        select(current);
+      } else {
+        list.hidden = true;
+        panels.forEach((p, j) => { p.removeAttribute('role'); p.setAttribute('aria-labelledby', `h-${tabs[j].id.slice(4)}`); p.removeAttribute('tabindex'); p.hidden = false; });
+      }
+    };
+
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i));
+      t.addEventListener('keydown', (e) => {
+        const last = tabs.length - 1;
+        const next = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[e.key];
+        if (next !== undefined) { e.preventDefault(); select(next, true); }
+      });
+    });
+    mq.addEventListener('change', apply);
+    apply();
+  }
+</script>
+
+<style>
+  .tablist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 2.5rem; }
+  .tablist[hidden] { display: none; }
+  [role='tab'] {
+    display: grid; gap: 0.3rem; text-align: left; cursor: pointer; background: transparent; color: var(--chalk);
+    border: 1px solid var(--rule-dark); border-radius: var(--radius); padding: 1rem 1.25rem; font: inherit;
+  }
+  [role='tab'] .label { color: var(--gold); }
+  .tt { font-family: var(--font-display); font-size: 1.8rem; line-height: 1; text-transform: uppercase; }
+  [role='tab'][aria-selected='true'] { background: var(--navy-3); border-color: var(--electric); box-shadow: inset 0 -3px 0 var(--electric); }
+  [role='tab']:hover { border-color: var(--chalk); }
+
+  .panel { display: grid; gap: 2.5rem; align-items: center; padding-block: 2rem; border-top: 1px solid var(--rule-dark); }
+  .panel[hidden] { display: none; }
+  .tablist:not([hidden]) ~ .panel { border-top: 0; padding-top: 0; }
+  @media (min-width: 900px) { .panel { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .text { display: grid; gap: 1rem; align-content: start; }
+  .text .eyebrow { margin: 0; }
+  h3 { font-size: var(--step-3); }
+  .text p { margin: 0; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.5rem 0; }
+  .stats div { border-top: 1px solid var(--rule-dark); padding-top: 0.75rem; }
+  .v { font-family: var(--font-display); font-size: clamp(2.6rem, 2rem + 2vw, 3.6rem); line-height: 1; color: var(--electric); }
+  dd { margin: 0.3rem 0 0; color: var(--on-navy-muted); font-size: 0.92rem; }
+  dd .tag { color: var(--gold); margin-left: 0.25rem; }
+  .points { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+  .points li { padding-left: 1.4rem; position: relative; }
+  .points li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 0.6rem; height: 2px; background: var(--gold); }
+  .privacy { background: rgba(200, 178, 115, 0.1); border-left: 3px solid var(--gold); padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+  .privacy .label { color: var(--gold); display: block; margin-bottom: 0.2rem; }
+  .screens { display: grid; gap: 1rem; justify-items: center; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .screens.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .screens :global(.phone) { max-width: 200px; }
+  @media (max-width: 520px) {
+    .screens.n3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .screens.n3 :global(.phone:nth-child(3)) { display: none; }
+  }
+</style>

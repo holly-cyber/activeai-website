@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import { SCORE } from '../../config/site';
+// D-W2: the dashboard lists the same three public unlocks and nothing else.
+const unlocks = (await getCollection('unlocks')).sort((a, b) => a.data.order - b.data.order);
+const activity: Record<string, number> = { 'epic-route-completed': 100, 'new-personal-best': 78, 'gear-replacement': 52 };
+const bands = [
+  { b: 'Peak', w: 12 },
+  { b: 'Momentum', w: 21 },
+  { b: 'Intent', w: 26 },
+  { b: 'Rising', w: 24 },
+  { b: 'Stable', w: 17 },
+];
+const kpis = [
+  { k: 'Active athletes', v: '4,812' },
+  { k: 'At Peak now', v: '577' },
+  { k: 'Unlocks this week', v: '1,236' },
+];
+---
+<section id="dashboard" class="band band--chalk" aria-labelledby="dashboard-title">
+  <div class="wrap inner">
+    <div class="section-head">
+      <p class="eyebrow">Partner portal</p>
+      <h2 id="dashboard-title">You see what the engine sees.</h2>
+      <p class="lede muted">A live view of your athletes' momentum, unlock activity and cohort trends. No exports, no waiting for the monthly report.</p>
+    </div>
+
+    <figure class="portal" aria-labelledby="portal-cap">
+      <figcaption id="portal-cap" class="visually-hidden">
+        Illustrative partner portal for a fictional brand, showing active athletes, athletes at Peak, weekly unlock activity by trigger and how athletes are spread across score bands.
+      </figcaption>
+      <div class="top">
+        <div>
+          <p class="label muted-on-navy">Partner portal</p>
+          <p class="brand">Fellside Outdoor <span class="label fict">fictional brand</span></p>
+        </div>
+        <span class="tag illus">Illustrative</span>
+      </div>
+
+      <dl class="kpis">
+        {kpis.map((k) => <div><dt class="label">{k.k}</dt><dd>{k.v}</dd></div>)}
+      </dl>
+
+      <div class="cols">
+        <div class="panel">
+          <p class="label ph">Unlock activity by trigger</p>
+          <ul role="list" class="bars">
+            {unlocks.map(({ id, data }) => (
+              <li>
+                <span class="n">{data.name}</span>
+                <span class="track"><span class="fill" style={`width:${activity[id] ?? 40}%`}></span></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="panel">
+          <p class="label ph">Athletes by {SCORE.abbr} band</p>
+          <div class="stack" aria-hidden="true">
+            {bands.map((b, i) => <span class={`s s${i}`} style={`flex:${b.w}`}></span>)}
+          </div>
+          <ul role="list" class="legend">
+            {bands.map((b, i) => <li><span class={`dot s${i}`}></span>{b.b}</li>)}
+          </ul>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .inner { display: grid; gap: 1rem; }
+  .portal { margin: 0; background: var(--navy); color: var(--chalk); border-radius: var(--radius-lg); padding: clamp(1.25rem, 1rem + 1.5vw, 2.25rem); box-shadow: 0 30px 60px -30px rgba(0, 0, 54, 0.5); display: grid; gap: 1.5rem; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .top p { margin: 0; }
+  .muted-on-navy { color: var(--on-navy-muted); }
+  .brand { font-family: var(--font-display); font-size: 2rem; line-height: 1.1; text-transform: uppercase; }
+  .fict { font-family: var(--font-mono); font-size: 0.62rem; color: var(--on-navy-muted); vertical-align: middle; }
+  .illus { color: var(--gold); border-color: var(--gold); white-space: nowrap; }
+  .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 0; }
+  .kpis div { background: var(--navy-2); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .kpis dt { color: var(--on-navy-muted); font-size: 0.62rem; }
+  .kpis dd { margin: 0.3rem 0 0; font-family: var(--font-display); font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.6rem); line-height: 1; }
+  .cols { display: grid; gap: 1rem; }
+  @media (min-width: 820px) { .cols { grid-template-columns: 1.2fr 1fr; } }
+  .panel { background: var(--navy-2); border-radius: var(--radius); padding: 1.25rem; }
+  .ph { color: var(--gold); margin: 0 0 1rem; }
+  .bars { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
+  .bars li { display: grid; gap: 0.35rem; }
+  .n { font-size: 0.9rem; }
+  .track { height: 10px; border-radius: 5px; background: rgba(244, 241, 236, 0.1); overflow: hidden; }
+  .fill { display: block; height: 100%; background: var(--electric); border-radius: 5px; }
+  .stack { display: flex; height: 18px; border-radius: 9px; overflow: hidden; gap: 2px; }
+  .legend { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.85rem; }
+  .legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .s0 { background: var(--electric); }
+  .s1 { background: #4fd4ff; }
+  .s2 { background: var(--gold); }
+  .s3 { background: #8e8ab8; }
+  .s4 { background: #4b4b85; }
+  @media (max-width: 520px) { .kpis { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "epic-route-completed",
+    "name": "Epic Route Completed",
+    "window": "2-hour window",
+    "moment": "An athlete finishes a big day out and wants to mark it. Recognition lands while the achievement still feels fresh.",
+    "rate": { "value": "74%", "text": "conversion inside the window", "label": "modelled" },
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "new-personal-best",
+    "name": "New Personal Best",
+    "window": "2-hour window",
+    "moment": "A new PB is proof the training is working. The athlete is thinking about what comes next.",
+    "featured": false,
+    "order": 2
+  },
+  {
+    "id": "gear-replacement",
+    "name": "Gear Replacement",
+    "window": "Window TBC",
+    "moment": "Kit reaches the end of its useful life. A timely nudge keeps the athlete safe and moving.",
+    "featured": false,
+    "order": 3
+  }
+]

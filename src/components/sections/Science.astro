@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+interface Props { depth?: boolean }
+const { depth = false } = Astro.props;
+const principles = (await getCollection('science')).sort((a, b) => a.data.order - b.data.order);
+---
+<section id="science" class:list={['band band--chalk science', { depth }]} aria-labelledby="science-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Behavioural science</p>
+      <h2 id="science-title">Built on decades of behavioural science.</h2>
+      <p class="lede muted">Protective of the athlete by design.</p>
+    </div>
+    <div class="grid grid--4">
+      {principles.map(({ data }) => (
+        <article class="card">
+          <h3>{data.name}</h3>
+          {data.researchers && <p class="label who">{data.researchers}</p>}
+          <p>{data.athlete}</p>
+          <p class="muted">{data.product}</p>
+        </article>
+      ))}
+    </div>
+    {depth && (
+      <p class="more muted">
+        Every principle is applied in the athlete's favour. Rest is respected, progress is made visible and belonging is
+        local and opt-in. There is no manufactured urgency, and a plateau is treated as a reason to care, never a reason to sell.
+      </p>
+    )}
+  </div>
+</section>
+
+<style>
+  .science:not(.depth) { padding-block: clamp(3rem, 2.5rem + 3vw, 5rem); }
+  .section-head { margin-bottom: 2rem; }
+  .card { background: var(--white); border-radius: var(--radius); padding: 1.4rem; border-top: 3px solid var(--gold); display: grid; gap: 0.6rem; align-content: start; }
+  h3 { font-size: 1.6rem; }
+  .who { color: #8a7440; margin: 0; }
+  .card p { margin: 0; font-size: 0.95rem; }
+  .more { margin-top: 2rem; max-width: 62ch; }
+</style>

@@ -1,0 +1,43 @@
+---
+import { SCORE } from '../config/site';
+interface Props { value?: number; band?: string; size?: number }
+const { value = 87, band = 'Peak', size = 240 } = Astro.props;
+const r = 52;
+const c = 2 * Math.PI * r;
+const offset = c * (1 - value / 100);
+---
+<figure class="ring" style={`--size:${size}px`}>
+  <svg viewBox="0 0 120 120" role="img" aria-label={`Example ${SCORE.name}: ${value}, ${band} band`}>
+    <circle cx="60" cy="60" r={r} class="track" />
+    <circle cx="60" cy="60" r={r} class="value" style={`--c:${c};--o:${offset}`} transform="rotate(-90 60 60)" />
+  </svg>
+  <figcaption aria-hidden="true">
+    <span class="num">{value}</span>
+    <span class="band">{band}</span>
+    <span class="abbr">{SCORE.abbr}</span>
+  </figcaption>
+</figure>
+
+<script>
+  const rings = document.querySelectorAll<HTMLElement>('.ring');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!still && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    }, { threshold: 0.4 });
+    rings.forEach((el) => { el.classList.add('will-animate'); io.observe(el); });
+  }
+</script>
+
+<style>
+  .ring { position: relative; width: min(var(--size), 70vw); aspect-ratio: 1; margin: 0; }
+  svg { width: 100%; height: 100%; }
+  circle { fill: none; stroke-width: 9; }
+  .track { stroke: rgba(244, 241, 236, 0.12); }
+  .value { stroke: var(--electric); stroke-linecap: round; stroke-dasharray: var(--c); stroke-dashoffset: var(--o); transition: stroke-dashoffset 1.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .ring.will-animate:not(.is-visible) .value { stroke-dashoffset: var(--c); }
+  figcaption { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; line-height: 1; }
+  .num { font-family: var(--font-display); font-size: calc(min(var(--size), 70vw) * 0.36); color: var(--chalk); }
+  .band { font-family: var(--font-mono); letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-size: 0.85rem; margin-top: 0.2rem; }
+  .abbr { font-family: var(--font-mono); letter-spacing: 0.2em; color: var(--on-navy-muted); font-size: 0.7rem; margin-top: 0.5rem; }
+</style>

@@ -1,0 +1,47 @@
+---
+import { SCORE } from '../../config/site';
+const without = [
+  'Sarah runs a 10K personal best. No signal fires. Nothing changes in your system.',
+  'Days later, your scheduled email goes out. Same message, same offer, to every athlete.',
+  'She has already bought from a competitor who reached her first. The moment has passed.',
+];
+const withAi = [
+  `Sarah's PB registers straight away and her ${SCORE.name} moves into the Peak band.`,
+  'A personal Momentum Unlock reaches her inside the window: the right product, the right message.',
+  'She buys from you. And her activity keeps feeding her score for next time.',
+];
+---
+<section id="solution" class="band band--white" aria-labelledby="solution-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The solution</p>
+      <h2 id="solution-title">Now you know exactly when to show up.</h2>
+    </div>
+    <div class="compare">
+      <div class="col without">
+        <p class="label head">Without Active AI</p>
+        <ol role="list">{without.map((t) => <li>{t}</li>)}</ol>
+      </div>
+      <div class="col with">
+        <p class="label head">With Active AI</p>
+        <ol role="list">{withAi.map((t) => <li>{t}</li>)}</ol>
+      </div>
+    </div>
+    <p class="closer">Active AI turns athlete momentum into a commercial signal, automatically and in real time, inside your existing systems.</p>
+  </div>
+</section>
+
+<style>
+  .compare { display: grid; gap: 1.25rem; }
+  @media (min-width: 820px) { .compare { grid-template-columns: 1fr 1fr; } }
+  .col { border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+  .without { background: var(--chalk); color: var(--ink-muted); }
+  .with { background: var(--navy); color: var(--chalk); }
+  .head { margin: 0 0 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid currentColor; }
+  .with .head { color: var(--gold); border-color: var(--rule-dark); }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; counter-reset: step; }
+  li { counter-increment: step; display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.5rem; }
+  li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.8rem; padding-top: 0.25rem; }
+  .with li::before { color: var(--electric); }
+  .closer { margin-top: 2.5rem; font-size: var(--step-1); max-width: 50ch; }
+</style>

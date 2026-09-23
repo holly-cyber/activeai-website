@@ -1,0 +1,39 @@
+---
+import CTAButton from '../CTAButton.astro';
+import Photo from '../Photo.astro';
+---
+<section class="hero band band--navy" aria-labelledby="hero-title">
+  <div class="wrap inner">
+    <div class="copy">
+      <p class="eyebrow">Beta partner programme · now open</p>
+      <h1 id="hero-title">Turning athlete momentum into revenue.</h1>
+      <p class="lede">
+        A white-label athlete app or API that keeps your athletes engaged, scores their momentum in real time and
+        fires a Momentum Unlock when they are ready to buy.
+      </p>
+      <div class="ctas">
+        <CTAButton />
+        <a class="btn btn--ghost" href="#platform">See how it works</a>
+      </div>
+    </div>
+    <Photo
+      class="hero-photo"
+      alt="A trail runner moving fast along a mountain ridge path."
+      brief="Hero: trail runner (deck slide 1)"
+      ratio="4 / 5"
+      eager
+      sizes="(min-width: 900px) 45vw, 100vw"
+    />
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: clamp(3rem, 2rem + 5vw, 6.5rem); overflow: hidden; }
+  .inner { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) { .inner { grid-template-columns: 1.15fr 0.85fr; gap: 4rem; } }
+  h1 { max-width: 12ch; }
+  .lede { margin-top: 1.5rem; color: var(--on-navy-muted); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+  .copy :global(.btn--ghost) { color: var(--chalk); }
+  @media (max-width: 899px) { :global(.hero-photo) { aspect-ratio: 16 / 10 !important; } }
+</style>

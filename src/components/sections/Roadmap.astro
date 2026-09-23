@@ -1,0 +1,39 @@
+---
+const phases = [
+  { w: 'Weeks 1–2', t: 'Discover', d: 'Agree goals, connect your catalogue and systems, and map the unlock library to your products.' },
+  { w: 'Weeks 3–6', t: 'Build', d: 'Your branded app or API integration takes shape, with crews, challenges and routes set up for your athletes.' },
+  { w: 'Weeks 7–10', t: 'Pilot', d: 'A first cohort of your athletes goes live. We tune timing and content together.' },
+  { w: 'Weeks 10–12', t: 'Launch', d: 'Roll out to your wider community, with the partner portal tracking every unlock.' },
+];
+---
+<section id="roadmap" class="band band--navy" aria-labelledby="roadmap-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">From yes to live</p>
+      <h2 id="roadmap-title">Live in 8–12 weeks.</h2>
+    </div>
+    <ol role="list" class="timeline">
+      {phases.map((p, i) => (
+        <li>
+          <span class="dot" aria-hidden="true">{i + 1}</span>
+          <p class="label w">{p.w}</p>
+          <h3>{p.t}</h3>
+          <p class="muted">{p.d}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 2rem; position: relative; }
+  @media (min-width: 900px) {
+    .timeline { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .timeline::before { content: ''; position: absolute; top: 1.2rem; left: 1.2rem; right: 1.2rem; height: 2px; background: var(--rule-dark); }
+  }
+  li { position: relative; display: grid; gap: 0.5rem; align-content: start; }
+  .dot { width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; background: var(--electric); color: var(--navy); font-family: var(--font-mono); font-weight: 500; position: relative; margin-bottom: 0.5rem; }
+  .w { color: var(--gold); margin: 0; }
+  h3 { font-size: var(--step-2); }
+  li p { margin: 0; }
+</style>

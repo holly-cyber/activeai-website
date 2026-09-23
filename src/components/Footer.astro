@@ -1,0 +1,38 @@
+---
+import Logo from './Logo.astro';
+import { COMPANY, CONTACT, NAV } from '../config/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer band--navy">
+  <div class="wrap cols">
+    <div>
+      <Logo />
+      <p class="muted small">Turning athlete momentum into revenue.</p>
+      <p><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+    </div>
+    <nav aria-label="Footer">
+      <ul role="list">
+        {NAV.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        <li><a href="/privacy">Privacy policy</a></li>
+        <li><a href="/cookies">Cookie policy</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap legal">
+    <p class="muted small">
+      © {year} {COMPANY.legalName}. Registered in England and Wales, company no. {COMPANY.number}. {COMPANY.location}.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: 3.5rem 2rem; }
+  .cols { display: grid; gap: 2rem; }
+  @media (min-width: 760px) { .cols { grid-template-columns: 1.3fr 1fr; } }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  @media (min-width: 560px) { ul { grid-template-columns: 1fr 1fr; } }
+  a { color: var(--on-navy); text-decoration: none; }
+  a:hover { color: var(--gold); text-decoration: underline; }
+  .small { font-size: 0.85rem; margin-top: 0.75rem; }
+  .legal { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule-dark); }
+</style>

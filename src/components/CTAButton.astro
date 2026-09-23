@@ -1,0 +1,8 @@
+---
+import { betaMailto, CTA_LABEL } from '../config/site';
+interface Props { variant?: 'primary' | 'ghost' | 'gold'; label?: string; class?: string }
+const { variant = 'primary', label = CTA_LABEL, class: className } = Astro.props;
+---
+<a class:list={['btn', `btn--${variant}`, className]} href={betaMailto()}>
+  {label} <span aria-hidden="true">→</span>
+</a>

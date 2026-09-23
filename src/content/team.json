@@ -1,0 +1,34 @@
+[
+  {
+    "id": "holly-woodford",
+    "name": "Holly Woodford",
+    "role": "CEO & Founder",
+    "short": "Three decades at the meeting point of sport, behaviour change and technology.",
+    "bio": "Holly has spent three decades at the intersection of sport, behaviour change and technology, from executive director roles at England Hockey and Sport England to building and scaling tech start-ups in sport and fitness. As co-founder of Her Spirit and GoPlayGo, she has a track record of turning participation challenges into scalable digital products. Active AI is the culmination of that career: a platform built by someone who has lived the problem from every angle.",
+    "order": 1
+  },
+  {
+    "id": "oyvind-lokling",
+    "name": "Øyvind Løkling",
+    "role": "CTO",
+    "short": "25+ years in data and AI engineering, including real-time pipelines at European scale.",
+    "bio": "Øyvind brings more than 25 years of data and AI engineering, including architecting real-time event processing pipelines handling 800+ million events a day at Schibsted Media Group, one of Europe's largest digital media companies. A specialist in agentic AI and machine learning, he has worked across the full data stack. His depth in stream processing and large-scale data infrastructure is the technical backbone of Active AI's engine.",
+    "order": 2
+  },
+  {
+    "id": "mel-berry",
+    "name": "Mel Berry",
+    "role": "Chief of Brand & Partnerships",
+    "short": "30+ years across sport, retail and consumer engagement, including three Olympic Games.",
+    "bio": "Mel brings 30+ years across sport, retail and consumer engagement, working with Adidas, Speedo, Boots and DFS, and contributing across three Olympic Games. As co-founder of Her Spirit alongside Holly, she spent seven years building digital communities. Her mix of brand relationships, women's sport networks and start-up experience connects Active AI's technology with the brands it serves.",
+    "order": 3
+  },
+  {
+    "id": "eirik-svendsen",
+    "name": "Eirik Svendsen",
+    "role": "Strategic Advisor & Product",
+    "short": "25+ years scaling digital platforms across Europe at board and C-suite level.",
+    "bio": "Eirik is a technology executive with 25+ years scaling digital platforms across Europe, at board and C-suite level across media, health and SaaS. As Chief Innovation Officer at Reach plc he led product, data and technology teams reaching 200 million monthly users. He chairs Disciple and Katapult Impact Platform, and brings strategic depth in data-driven consumer platforms to Active AI's product vision.",
+    "order": 4
+  }
+]

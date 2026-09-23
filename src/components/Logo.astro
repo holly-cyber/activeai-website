@@ -1,0 +1,11 @@
+---
+/* PLACEHOLDER wordmark set in type until Holly supplies the SVG logo. */
+interface Props { class?: string }
+const { class: className } = Astro.props;
+---
+<span class:list={['logo', className]} aria-label="Active.AI">Active<span class="dot">.AI</span></span>
+
+<style>
+  .logo { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; line-height: 1; text-transform: uppercase; }
+  .dot { color: var(--gold); }
+</style>
