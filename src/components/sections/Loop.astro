@@ -1,0 +1,45 @@
+---
+import ScoreRing from '../ScoreRing.astro';
+import { SCORE } from '../../config/site';
+interface Props { id?: string }
+const { id = 'platform' } = Astro.props;
+const steps = [
+  { k: 'Engage', t: 'Athletes use your branded app: crews, challenges and routes keep them active between purchases.' },
+  { k: 'Behaviour', t: 'Activity from wearables and the app is captured as it happens.' },
+  { k: 'Score', t: `Each athlete's ${SCORE.name} updates in real time.` },
+  { k: 'Unlock', t: 'When the moment is right, a Momentum Unlock fires. Never on a schedule, never in a batch.' },
+  { k: 'Revenue', t: 'The purchase lands in your systems, and the loop starts again.' },
+];
+---
+<section id={id} class="band band--navy" aria-labelledby={`${id}-title`}>
+  <div class="wrap inner">
+    <div>
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id={`${id}-title`}>Behaviour → Score → Unlock → Revenue.</h2>
+      </div>
+      <ol role="list">
+        {steps.map((s, i) => (
+          <li>
+            <span class="i mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div><h3>{s.k}</h3><p class="muted">{s.t}</p></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <div class="ring-wrap">
+      <ScoreRing value={87} band="Peak" />
+      <p class="label muted">Example athlete · illustrative</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inner { display: grid; gap: 3rem; align-items: center; }
+  @media (min-width: 960px) { .inner { grid-template-columns: 1.2fr 0.8fr; } }
+  ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+  li { display: grid; grid-template-columns: 3rem 1fr; gap: 0.75rem; padding: 1.1rem 0; border-top: 1px solid var(--rule-dark); }
+  .i { color: var(--electric); padding-top: 0.35rem; }
+  h3 { font-size: var(--step-1); margin-bottom: 0.3rem; letter-spacing: 0.04em; }
+  .ring-wrap { display: grid; justify-items: center; gap: 1rem; }
+</style>

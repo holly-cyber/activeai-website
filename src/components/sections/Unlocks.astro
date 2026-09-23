@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+const unlocks = (await getCollection('unlocks')).sort((a, b) => a.data.order - b.data.order);
+---
+<section id="unlocks" class="band band--navy" aria-labelledby="unlocks-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The revenue engine</p>
+      <h2 id="unlocks-title">Momentum Unlocks.</h2>
+      <p class="lede muted">
+        Each unlock is a single, well-timed commercial moment, earned by what the athlete has just done. Behavioural,
+        not calendar-based. Never batch-sent.
+      </p>
+    </div>
+    <div class="list">
+      {unlocks.map(({ data }) => (
+        <article class:list={['unlock', { featured: data.featured }]}>
+          {data.featured && <p class="label star">★ Top unlock</p>}
+          <h3>{data.name}</h3>
+          <p class="label window">{data.window}</p>
+          <p class="muted">{data.moment}</p>
+          {data.rate && (
+            <p class="rate">
+              <span class="v">{data.rate.value}</span>
+              <span class="t">{data.rate.text} <span class="tag">{data.rate.label}</span></span>
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+    <div class="notes">
+      <p class="care"><strong>Plateau is a care signal, never a purchase trigger.</strong> When an athlete stalls, every unlock is held back. Protecting your relationship with the athlete comes first.</p>
+      <p class="muted">The full library is mapped to your catalogue during onboarding.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .list { display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) { .list { grid-template-columns: 1.3fr 1fr 1fr; } }
+  .unlock { border: 1px solid var(--rule-dark); border-radius: var(--radius-lg); padding: 1.75rem; display: grid; gap: 0.75rem; align-content: start; }
+  .featured { background: var(--navy-3); border-color: var(--gold); }
+  .star { color: var(--gold); margin: 0; }
+  h3 { font-size: var(--step-2); }
+  .window { color: var(--electric); margin: 0; }
+  .unlock p { margin: 0; }
+  .rate { display: grid; gap: 0.25rem; margin-top: 0.75rem !important; padding-top: 1rem; border-top: 1px solid var(--rule-dark); }
+  .v { font-family: var(--font-display); font-size: 4.5rem; line-height: 0.9; color: var(--electric); }
+  .t { color: var(--on-navy-muted); }
+  .tag { color: var(--gold); margin-left: 0.4rem; }
+  .notes { margin-top: 2.5rem; display: grid; gap: 1rem; max-width: 64ch; }
+  .care { border-left: 3px solid var(--gold); padding-left: 1rem; }
+</style>

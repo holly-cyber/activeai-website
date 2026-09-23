@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import { getCollection } from 'astro:content';
+import { COMPANY, CONTACT } from '../config/site';
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
+---
+<Base title="About" description="The team behind Active AI: decades across sport, behaviour change, data and digital platforms. Active AI Ltd, Shap, Cumbria.">
+  <PageHero eyebrow="About Active AI" title="Built by people who have lived the problem.">
+    Active AI brings together decades in sport, behaviour change, real-time data and consumer platforms, with one aim:
+    help brands look after athletes well, and be there when it counts.
+  </PageHero>
+
+  <section class="band band--chalk" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The team</p>
+        <h2 id="team-title">The people who built this. And who will scale it.</h2>
+      </div>
+      <ul role="list" class="people">
+        {team.map(({ data }) => (
+          <li>
+            <div class="head" role="img" aria-label={`Headshot placeholder for ${data.name}`}><span aria-hidden="true">{initials(data.name)}</span></div>
+            <div>
+              <h3>{data.name}</h3>
+              <p class="label role">{data.role}</p>
+              <p class="muted">{data.bio}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band--navy" aria-labelledby="build-title">
+    <div class="wrap grid grid--2">
+      <div>
+        <p class="eyebrow">How we build</p>
+        <h2 id="build-title">AI-native from day one.</h2>
+      </div>
+      <div class="story">
+        <p>Active AI is built the way we expect our partners' teams to work in future: a small, senior team working alongside AI agents across product, engineering and operations.</p>
+        <p class="muted">It means we move quickly, ship in small, tested steps and keep humans in charge of every decision that matters, especially the ones that affect athletes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--chalk" aria-labelledby="company-title">
+    <div class="wrap grid grid--2">
+      <div>
+        <p class="eyebrow">Company details</p>
+        <h2 id="company-title">{COMPANY.legalName}</h2>
+      </div>
+      <dl class="details">
+        <div><dt class="label">Registered</dt><dd>England and Wales</dd></div>
+        <div><dt class="label">Company number</dt><dd>{COMPANY.number}</dd></div>
+        <div><dt class="label">Based in</dt><dd>{COMPANY.location}</dd></div>
+        <div><dt class="label">Contact</dt><dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
+      </dl>
+    </div>
+    <div class="wrap cta"><CTAButton variant="primary" /></div>
+  </section>
+</Base>
+
+<style>
+  .people { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.5rem; }
+  @media (min-width: 900px) { .people { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+  .people li { display: grid; grid-template-columns: 110px 1fr; gap: 1.25rem; align-items: start; }
+  @media (min-width: 560px) { .people li { grid-template-columns: 150px 1fr; } }
+  .head { aspect-ratio: 1; border-radius: var(--radius); background: linear-gradient(160deg, var(--navy-3), var(--navy)); display: grid; place-items: center; border: 1px dashed rgba(200, 178, 115, 0.6); }
+  .head span { font-family: var(--font-display); font-size: 3rem; color: var(--gold); }
+  h3 { font-size: var(--step-2); }
+  .role { color: var(--accent-text); margin: 0.3rem 0 0.8rem; }
+  .people p.muted { font-size: 0.95rem; }
+  .story { font-size: var(--step-1); }
+  .details { margin: 0; display: grid; gap: 1rem; }
+  .details div { border-top: 1px solid var(--rule-light); padding-top: 0.75rem; }
+  .details dt { color: var(--ink-muted); }
+  .details dd { margin: 0.2rem 0 0; font-size: var(--step-1); }
+  .cta { margin-top: 3rem; }
+</style>

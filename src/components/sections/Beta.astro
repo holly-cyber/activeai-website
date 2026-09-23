@@ -1,0 +1,49 @@
+---
+import CTAButton from '../CTAButton.astro';
+import { CONTACT, SCORE } from '../../config/site';
+interface Props { showCloser?: boolean }
+const { showCloser = true } = Astro.props;
+const benefits = [
+  { t: 'White-label app or API', d: 'Your brand, your community: a fully branded iOS and Android app, or our engine inside your own product.' },
+  { t: `The ${SCORE.abbr} engine on your data`, d: 'Real-time momentum scoring across your athletes, with unlocks mapped to your catalogue from day one.' },
+  { t: 'Co-development rights', d: 'Beta partners shape the roadmap. Your use case directly informs what we build next.' },
+  { t: 'Preferred commercial terms', d: 'Beta partners lock in preferred commercial terms, permanently, before standard pricing arrives.' },
+  { t: 'Case study and PR priority', d: 'A first-mover story in the sports-tech press. Your results become the proof point.' },
+  { t: 'Partner performance portal', d: 'A live dashboard of unlock activity and cohort momentum.' },
+];
+---
+<section id="beta" class="band band--navy" aria-labelledby="beta-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Beta partnership</p>
+      <h2 id="beta-title">Be first. Shape the platform.</h2>
+      <p class="lede muted">We are selecting a small cohort of beta partners: sports brands, retailers, governing bodies and outdoor organisations. Conversations are happening now.</p>
+    </div>
+    <ul role="list" class="grid grid--3 benefits">
+      {benefits.map((b) => (
+        <li class="ruled"><h3>{b.t}</h3><p class="muted">{b.d}</p></li>
+      ))}
+    </ul>
+    {showCloser && (
+      <div class="closer">
+        <h2 class="big">Your athletes are at peak. <span>Are you ready?</span></h2>
+        <div class="cta">
+          <CTAButton />
+          <p class="mail">Or email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  ul { list-style: none; padding: 0; margin: 0; }
+  h3 { font-size: var(--step-1); letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+  li p { margin: 0; }
+  .closer { margin-top: clamp(4rem, 3rem + 4vw, 6rem); padding-top: clamp(3rem, 2rem + 3vw, 4rem); border-top: 1px solid var(--rule-dark); display: grid; gap: 2rem; }
+  .big { font-size: var(--step-4); max-width: 14ch; }
+  .big span { color: var(--gold); }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+  .mail { margin: 0; color: var(--on-navy-muted); }
+  .mail a { color: var(--chalk); }
+</style>

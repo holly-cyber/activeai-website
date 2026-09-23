@@ -1,0 +1,66 @@
+[
+  {
+    "id": "crews",
+    "eyebrow": "Social",
+    "title": "Crews",
+    "intro": "Athletes join local crews, find groups by pace and place, and battle other crews on shared division tables. Training together keeps people training.",
+    "stats": [
+      { "value": "22%", "text": "more km during crew battles", "label": "modelled" },
+      { "value": "3.4×", "text": "session frequency in battle mode", "label": "modelled" }
+    ],
+    "points": [
+      "Find a crew nearby, matched to your pace",
+      "Weekly crew battles on a division table",
+      "Everyone's effort counts towards the crew total"
+    ],
+    "privacy": "Quiet weeks never count as zero. Nobody lets their crew down by resting.",
+    "screens": [
+      { "name": "Crews", "alt": "The Crews screen, showing the athlete's crew, its members and this week's battle." },
+      { "name": "Division table", "alt": "A division table ranking local crews by this week's combined distance." },
+      { "name": "Near You", "alt": "The Near You screen, listing crews close to the athlete, filtered by pace." }
+    ],
+    "order": 1
+  },
+  {
+    "id": "challenges",
+    "eyebrow": "Competition",
+    "title": "Challenges",
+    "intro": "Branded distance and streak challenges with live progress, leaderboards and a clear finish line. Your brand is there for the whole journey, not just the checkout.",
+    "stats": [
+      { "value": "38%", "text": "higher {score} for challenge participants", "label": "modelled" },
+      { "value": "2×", "text": "purchase rate versus non-participants", "label": "modelled" }
+    ],
+    "points": [
+      "Distance and streak challenges in your brand",
+      "Live progress bars and leaderboards",
+      "Finishing is a moment worth recognising"
+    ],
+    "privacy": "Athletes choose which challenges to join. Nothing is entered on their behalf.",
+    "screens": [
+      { "name": "100K November", "alt": "The 100K November challenge, showing the athlete's progress towards 100 kilometres." },
+      { "name": "Summit Reached", "alt": "A challenge completion screen celebrating the athlete reaching the summit." }
+    ],
+    "order": 2
+  },
+  {
+    "id": "routes",
+    "eyebrow": "Location",
+    "title": "Routes & markers",
+    "intro": "Routes and markers turn local places into things worth reaching. Completing an epic route or claiming a gold marker is a moment the engine can respond to straight away.",
+    "stats": [
+      { "value": "74%", "text": "conversion on Epic Route Completed", "label": "modelled" },
+      { "value": "2hr", "text": "unlock window after route completion", "label": "modelled" }
+    ],
+    "points": [
+      "Curated local routes, from river loops to summits",
+      "Gold markers to find and claim along the way",
+      "Every completed route feeds the athlete's momentum"
+    ],
+    "privacy": "One location read per tap. We check where an athlete is only when they ask us to.",
+    "screens": [
+      { "name": "Mill Race", "alt": "The Mill Race route page, with a map of the route and its markers." },
+      { "name": "Gold marker claim", "alt": "The moment an athlete claims a gold marker on a route." }
+    ],
+    "order": 3
+  }
+]

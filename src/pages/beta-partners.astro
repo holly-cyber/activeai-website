@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import Beta from '../components/sections/Beta.astro';
+import Roadmap from '../components/sections/Roadmap.astro';
+const whoFor = [
+  { t: 'Sports brands', d: 'Keep athletes close between purchases and show up when it counts.' },
+  { t: 'Retailers', d: 'Turn a one-off transaction into an ongoing relationship with active customers.' },
+  { t: 'Governing bodies', d: 'Keep participants moving and give commercial partners a reason to invest.' },
+  { t: 'Outdoor organisations', d: 'Bring routes, places and communities to life for the people who use them.' },
+];
+---
+<Base
+  title="Beta partner programme"
+  description="Join a small cohort of Active AI beta partners: a white-label athlete app or API, co-development rights and preferred commercial terms, locked permanently. Live in 8–12 weeks."
+>
+  <PageHero eyebrow="Beta partner programme" title="Be one of the first. Shape what comes next.">
+    We are working with a small cohort of partners to take the platform live. You get the product early, a direct line
+    into the roadmap and preferred commercial terms, locked permanently.
+    <Fragment slot="actions"><CTAButton /></Fragment>
+  </PageHero>
+
+  <section class="band band--chalk" aria-labelledby="who-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Who it is for</p>
+        <h2 id="who-title">Built for organisations with athletes to look after.</h2>
+      </div>
+      <ul role="list" class="grid grid--4 who">
+        {whoFor.map((w) => <li class="ruled"><h3>{w.t}</h3><p class="muted">{w.d}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Beta showCloser={false} />
+  <Roadmap />
+
+  <section class="band band--chalk" aria-labelledby="next-title">
+    <div class="wrap next">
+      <p class="eyebrow">Next step</p>
+      <h2 id="next-title">Start with a conversation.</h2>
+      <p class="lede muted">Tell us a little about your athletes and what you want to achieve. We will come back with how the beta would work for you.</p>
+      <CTAButton />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .who { list-style: none; padding: 0; margin: 0; }
+  .who h3 { font-size: var(--step-2); margin-bottom: 0.4rem; }
+  .next { display: grid; gap: 1.25rem; justify-items: start; }
+  .next .eyebrow, .next p { margin: 0; }
+</style>

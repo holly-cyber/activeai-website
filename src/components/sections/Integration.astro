@@ -1,0 +1,60 @@
+---
+import { SCORE } from '../../config/site';
+const options = [
+  {
+    tag: 'Option A',
+    title: 'White-label athlete app',
+    lede: 'We build and run a fully branded athlete app for you, on the App Store and Google Play under your name.',
+    points: [
+      'Crews, challenges and routes, in your brand',
+      `${SCORE.name} and momentum history for every athlete`,
+      'Momentum Unlocks connected to your shop',
+      'Wearable connections built in',
+      'Store submission and app updates handled for you',
+    ],
+  },
+  {
+    tag: 'Option B',
+    title: 'Headless API + components',
+    lede: 'Add Active AI to the app you already have, through our partner API and a ready-made component library.',
+    points: [
+      'Versioned partner API with real-time webhook events',
+      'Per-partner data isolation and scoped access',
+      'Drop-in components: score ring, momentum chart, unlock card',
+      'Your design system, our engine',
+      'Your team stays in control of the product',
+    ],
+  },
+];
+---
+<section id="integration" class="band band--white" aria-labelledby="integration-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Two routes to market</p>
+      <h2 id="integration-title">Your choice of integration.</h2>
+      <p class="lede muted">A complete athlete app, or momentum intelligence inside the product you already run. Either way, it is your brand in front of your athletes.</p>
+    </div>
+    <div class="grid grid--2">
+      {options.map((o, i) => (
+        <article class:list={['opt', { dark: i === 0 }]}>
+          <p class="label t">{o.tag}</p>
+          <h3>{o.title}</h3>
+          <p class="lead">{o.lede}</p>
+          <ul role="list">{o.points.map((p) => <li>{p}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .opt { border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--chalk); display: grid; gap: 1rem; align-content: start; }
+  .opt.dark { background: var(--navy); color: var(--chalk); }
+  .t { margin: 0; color: #8a7440; }
+  .dark .t { color: var(--gold); }
+  h3 { font-size: var(--step-3); }
+  .lead { margin: 0; }
+  ul { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0; }
+  li { padding: 0.7rem 0; border-top: 1px solid var(--rule-light); }
+  .dark li { border-top-color: var(--rule-dark); }
+</style>

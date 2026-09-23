@@ -1,0 +1,35 @@
+---
+import Phone from '../Phone.astro';
+const benefits = [
+  { k: 'Your athletes stay engaged', t: 'Sessions, challenges and community keep them active between purchases.' },
+  { k: 'You see what they are doing', t: 'Real-time momentum across every wearable and activity.' },
+  { k: 'You reach them at the right moment', t: 'Momentum Unlocks fire automatically when they are ready to buy.' },
+];
+---
+<section id="product" class="band band--chalk" aria-labelledby="product-title">
+  <div class="wrap inner">
+    <div class="phones">
+      <Phone screen="Home" alt="The app home screen, showing the athlete's momentum score, this week's activity and a live challenge." />
+      <Phone screen="You" alt="The You screen, showing the athlete's profile, personal bests and recent achievements." class="offset" />
+    </div>
+    <div>
+      <div class="section-head">
+        <p class="eyebrow">The product</p>
+        <h2 id="product-title">Your brand. Your athletes. Their momentum.</h2>
+        <p class="lede muted">A fully white-labelled app or API that tracks momentum, celebrates achievements and opens up commerce at exactly the right moment.</p>
+      </div>
+      <ul role="list">
+        {benefits.map((b) => <li class="ruled"><h3>{b.k}</h3><p class="muted">{b.t}</p></li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inner { display: grid; gap: 3rem; align-items: center; }
+  @media (min-width: 960px) { .inner { grid-template-columns: 0.9fr 1.1fr; } }
+  .phones { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; justify-items: center; max-width: 480px; margin-inline: auto; width: 100%; color: var(--ink); }
+  .phones :global(.offset) { margin-top: 3rem; }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+  h3 { font-size: var(--step-1); letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+</style>

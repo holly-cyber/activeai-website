@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Loop from '../components/sections/Loop.astro';
+import Score from '../components/sections/Score.astro';
+import Science from '../components/sections/Science.astro';
+import Unlocks from '../components/sections/Unlocks.astro';
+import Dashboard from '../components/sections/Dashboard.astro';
+import Integration from '../components/sections/Integration.astro';
+import Roadmap from '../components/sections/Roadmap.astro';
+import Beta from '../components/sections/Beta.astro';
+import { SCORE } from '../config/site';
+---
+<Base
+  title="Platform"
+  description={`How Active AI works: the ${SCORE.name}, Momentum Unlocks, the partner portal and two ways to integrate, as a white-label app or a headless API.`}
+>
+  <PageHero eyebrow="Platform" title="The momentum engine, in more depth.">
+    Everything a digital or technical lead needs to judge the fit: how the loop works, what the {SCORE.name}
+    measures, how unlocks are timed and protected, and the two ways to integrate.
+  </PageHero>
+  <Loop id="loop" />
+  <Score />
+  <Science depth />
+  <Unlocks />
+  <Dashboard />
+  <Integration />
+  <Roadmap />
+  <Beta />
+</Base>

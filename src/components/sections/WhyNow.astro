@@ -1,0 +1,51 @@
+---
+const forces = [
+  {
+    n: '01',
+    title: 'Wearables reached critical mass.',
+    body: 'Athletes generate richer behavioural data than ever. Brands are sitting on it, unused.',
+    kicker: 'The data exists. Nobody is putting it to work for commerce.',
+  },
+  {
+    n: '02',
+    title: 'Batch marketing is broken.',
+    body: "Retail email engagement keeps falling. Athletes have tuned out generic campaigns. Relevance is now the price of their attention.",
+    kicker: 'The old playbook has stopped working.',
+  },
+  {
+    n: '03',
+    title: 'AI finally makes real time possible.',
+    body: 'Real-time scoring, AI-led personalisation and mature wearable APIs have all arrived in the last 18 months.',
+    kicker: 'The technology just caught up with the opportunity.',
+  },
+];
+---
+<section id="why-now" class="band band--navy" aria-labelledby="why-now-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Why now</p>
+      <h2 id="why-now-title">Three forces are converging.</h2>
+    </div>
+    <ol class="grid grid--3" role="list">
+      {forces.map((f) => (
+        <li>
+          <span class="n" aria-hidden="true">{f.n}</span>
+          <h3 class="ruled">{f.title}</h3>
+          <p class="muted">{f.body}</p>
+          <p class="kicker">{f.kicker}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="closer"><span class="eyebrow">The window is open now</span><br />First movers in behaviour-led commerce will own the category. That window closes as the market matures.</p>
+  </div>
+</section>
+
+<style>
+  ol { list-style: none; padding: 0; margin: 0; }
+  li { display: grid; gap: 0.9rem; align-content: start; }
+  .n { font-family: var(--font-display); font-size: 4rem; line-height: 1; color: var(--electric); }
+  h3 { font-size: var(--step-2); }
+  .kicker { color: var(--gold); font-weight: 500; }
+  .closer { margin-top: 3.5rem; font-size: var(--step-1); max-width: 48ch; }
+  .closer .eyebrow { margin-bottom: 0.5rem; }
+</style>

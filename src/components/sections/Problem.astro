@@ -1,0 +1,44 @@
+---
+import Photo from '../Photo.astro';
+const cols = [
+  {
+    title: 'Timing is the whole game',
+    body: 'Your athlete just ran a personal best. You send them the same email as everyone else, days later.',
+    photo: 'Runner checking a watch after a hard effort',
+  },
+  {
+    title: 'Data without intelligence',
+    body: 'You hold plenty of data points, but nothing joins them into a live buying signal. Once a sale completes, you lose sight of the athlete.',
+    photo: 'Athlete mid-session, kit and wearable visible',
+  },
+  {
+    title: 'Revenue left on the table',
+    body: 'Broadcast campaigns treat every athlete the same. Messages tied to what someone has just done consistently beat them. That gap is your opportunity cost.',
+    photo: 'Empty checkout / retail moment',
+  },
+];
+---
+<section id="problem" class="band band--chalk" aria-labelledby="problem-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The problem</p>
+      <h2 id="problem-title">Sports brands are flying blind.</h2>
+    </div>
+    <div class="grid grid--3">
+      {cols.map((c) => (
+        <article>
+          <Photo alt={c.photo} brief={`Problem: ${c.photo}`} ratio="3 / 2" />
+          <h3 class="ruled">{c.title}</h3>
+          <p class="muted">{c.body}</p>
+        </article>
+      ))}
+    </div>
+    <p class="closer">Active AI moves sports brands from <strong>campaign-led</strong> selling to <strong>behaviour-led</strong> revenue.</p>
+  </div>
+</section>
+
+<style>
+  article { display: grid; gap: 1rem; align-content: start; }
+  h3 { font-size: var(--step-2); margin-top: 0.5rem; }
+  .closer { margin-top: 3rem; font-size: var(--step-1); max-width: 40ch; }
+</style>

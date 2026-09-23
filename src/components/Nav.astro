@@ -1,0 +1,78 @@
+---
+import Logo from './Logo.astro';
+import CTAButton from './CTAButton.astro';
+import { NAV } from '../config/site';
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="/" class="home" aria-label="Active AI home"><Logo /></a>
+    <nav aria-label="Main">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+        <span class="bars" aria-hidden="true"></span>
+        <span class="menu-label">Menu</span>
+      </button>
+      <div id="main-menu" class="menu">
+        <ul role="list">
+          {NAV.map((item) => (
+            <li><a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a></li>
+          ))}
+        </ul>
+        <CTAButton class="nav-cta" />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.getElementById('main-menu');
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      menu.classList.toggle('is-open', open);
+    };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 50; background: var(--navy); color: var(--on-navy); border-bottom: 1px solid var(--rule-dark); }
+  .bar { display: flex; align-items: center; justify-content: space-between; min-height: 4.25rem; gap: 1rem; }
+  .home { text-decoration: none; color: inherit; }
+  .menu-toggle {
+    display: inline-flex; align-items: center; gap: 0.6rem; background: none; border: 1px solid var(--rule-dark);
+    color: inherit; font: 500 0.78rem/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.7rem 0.9rem; border-radius: 999px; cursor: pointer;
+  }
+  .bars, .bars::before, .bars::after { display: block; width: 18px; height: 2px; background: currentColor; position: relative; transition: transform 0.2s ease; }
+  .bars::before, .bars::after { content: ''; position: absolute; left: 0; }
+  .bars::before { top: -6px; }
+  .bars::after { top: 6px; }
+  .menu-toggle[aria-expanded='true'] .bars { background: transparent; }
+  .menu-toggle[aria-expanded='true'] .bars::before { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle[aria-expanded='true'] .bars::after { transform: translateY(-6px) rotate(-45deg); }
+
+  .menu { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--navy); padding: 1rem var(--gutter) 2rem; border-bottom: 1px solid var(--rule-dark); }
+  .menu.is-open { display: block; }
+  ul { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+  li a { display: block; padding: 0.9rem 0; text-decoration: none; font-size: 1.1rem; border-bottom: 1px solid var(--rule-dark); }
+  li a:hover, li a[aria-current='page'] { color: var(--gold); }
+
+  @media (min-width: 1000px) {
+    .menu-toggle { display: none; }
+    .menu, .menu.is-open { display: flex; position: static; padding: 0; border: 0; align-items: center; gap: 1.75rem; background: none; }
+    ul { display: flex; gap: 1.6rem; margin: 0; }
+    li a { padding: 0.4rem 0; border: 0; font-size: 0.92rem; }
+    .menu :global(.nav-cta) { padding: 0.7rem 1.1rem; font-size: 0.75rem; }
+  }
+</style>
