@@ -7,7 +7,6 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
   integrations: [
-    // Placeholder legal pages are noindex until the live text is ported.
-    sitemap({ filter: (page) => !/\/(404|privacy|cookies)$/.test(page) }),
+    sitemap({ filter: (page) => !page.endsWith('/404') }),
   ],
 });

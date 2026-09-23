@@ -1,7 +1,62 @@
 ---
+/*
+ * Ported word for word from the live site's privacy policy (supplied by Holly,
+ * 23 Sept 2026). Do not edit the wording here; policy changes are Holly's call.
+ */
 import Base from '../layouts/Base.astro';
-import LegalPlaceholder from '../components/LegalPlaceholder.astro';
 ---
-<Base title="Privacy policy" description="How Active AI Ltd handles personal data." noindex>
-  <LegalPlaceholder title="Privacy policy" />
+<Base title="Privacy policy" description="How Active AI Ltd collects, uses and protects your personal information, and the rights you have.">
+  <section class="band band--chalk">
+    <div class="wrap prose">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="meta label">Active AI Ltd · Version 1 · Reviewed 5th June 2025</p>
+
+      <div class="summary">
+        <h2>Summary</h2>
+        <p><strong>Data Controller:</strong> Active AI Ltd, 58 Denison Street, Beeston, Nottingham, NG9 1AX.</p>
+        <p>We will only collect personal information that you have voluntarily decided to provide to us or we have recorded from your usage of the Service. We will never sell, rent or give away your personal data to other third parties.</p>
+      </div>
+
+      <h2>1. Introduction</h2>
+      <p>This Privacy Policy explains what information we collect and process using the Active AI Ltd platform and related services (the "Service"), and the choices and rights you have in connection with your personal information. Active AI Ltd is the Data Controller for this Service.</p>
+
+      <h2>2. Data Protection Framework</h2>
+      <p>Active AI Ltd is based in the United Kingdom and is registered with the Information Commissioner's Office (ICO) as a Data Controller under the UK Data Protection Act and GDPR.</p>
+
+      <h2>3. What Information Do We Collect?</h2>
+      <p>We may collect your name, email address, phone number, IP address, activity data, and any other contact details or content which you have provided to us. If you connect an activity tracker we may also collect fitness data including steps, distance, heart rate, sleep data, calories, and activity summaries.</p>
+
+      <h2>4. How We Use Your Data</h2>
+      <p>We use your personal information to provide the full features of the Service, and to analyse, improve and promote the Service. We will always ask you before processing your personal data in any other way. We use anonymised data to prepare statistics to improve our service.</p>
+
+      <h2>5. Legal Basis</h2>
+      <p>Our processing is based on the consent you have voluntarily provided to us.</p>
+
+      <h2>6. Data Sharing</h2>
+      <p>We will only share your personal information with our declared data processors: Amazon Web Services, Laravel Forge/Vapor, MailChimp, Google Analytics, Google G Suite, Cloudinary, Pusher, and WeFitter. All sub-processors comply with relevant data protection frameworks.</p>
+
+      <h2>7. Your Rights</h2>
+      <p>You have the right to be informed, access your data, rectify inaccuracies, request erasure, restrict processing, data portability, object to processing, lodge a complaint, and withdraw consent. Contact us to exercise any of these rights.</p>
+
+      <h2>8. Children</h2>
+      <p>This Service is not directed to users under 18, except where users aged 13–18 have obtained prior parental or guardian consent.</p>
+
+      <h2>9. Changes to This Policy</h2>
+      <p>We may update this Policy from time to time. You will be notified of significant changes before continuing to use the Service.</p>
+
+      <h2>Contact</h2>
+      <p>
+        Active AI Ltd · 58 Denison Street, Beeston, Nottingham, NG9 1AX<br />
+        Email: <a href="mailto:holly@weareactiveai.com">holly@weareactiveai.com</a> · Tel: <a href="tel:+447771346748">07771 346748</a>
+      </p>
+    </div>
+  </section>
 </Base>
+
+<style>
+  h1 { font-size: var(--step-3); }
+  .meta { color: var(--ink-muted); margin: 1rem 0 2rem; }
+  .summary { background: var(--white); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius) var(--radius) 0; }
+  .summary h2 { margin-top: 0; }
+</style>
