@@ -1,9 +1,11 @@
 ---
 /*
  * Ported word for word from the live site's cookie policy (supplied by Holly,
- * 23 Sept 2026). Do not edit the wording here; policy changes are Holly's call.
+ * 23 Sept 2026), with the address updated on Holly's instruction. Do not edit
+ * the wording here; policy changes are Holly's call.
  */
 import Base from '../layouts/Base.astro';
+import { COMPANY } from '../config/site';
 ---
 <Base title="Cookie policy" description="What cookies are, how Active AI Ltd uses them and how you can manage them.">
   <section class="band band--chalk">
@@ -35,7 +37,7 @@ import Base from '../layouts/Base.astro';
 
       <h2>Contact</h2>
       <p>
-        Active AI Ltd · 58 Denison Street, Beeston, Nottingham, NG9 1AX<br />
+        Active AI Ltd · {COMPANY.address}<br />
         Email: <a href="mailto:holly@weareactiveai.com">holly@weareactiveai.com</a>
       </p>
     </div>

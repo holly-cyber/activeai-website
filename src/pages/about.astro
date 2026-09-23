@@ -56,7 +56,7 @@ const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
       <dl class="details">
         <div><dt class="label">Registered</dt><dd>England and Wales</dd></div>
         <div><dt class="label">Company number</dt><dd>{COMPANY.number}</dd></div>
-        <div><dt class="label">Based in</dt><dd>{COMPANY.location}</dd></div>
+        <div><dt class="label">Address</dt><dd>{COMPANY.address}</dd></div>
         <div><dt class="label">Contact</dt><dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
       </dl>
     </div>

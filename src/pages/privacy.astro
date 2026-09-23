@@ -1,9 +1,11 @@
 ---
 /*
  * Ported word for word from the live site's privacy policy (supplied by Holly,
- * 23 Sept 2026). Do not edit the wording here; policy changes are Holly's call.
+ * 23 Sept 2026), with the address updated on Holly's instruction. Do not edit
+ * the wording here; policy changes are Holly's call.
  */
 import Base from '../layouts/Base.astro';
+import { COMPANY } from '../config/site';
 ---
 <Base title="Privacy policy" description="How Active AI Ltd collects, uses and protects your personal information, and the rights you have.">
   <section class="band band--chalk">
@@ -14,7 +16,7 @@ import Base from '../layouts/Base.astro';
 
       <div class="summary">
         <h2>Summary</h2>
-        <p><strong>Data Controller:</strong> Active AI Ltd, 58 Denison Street, Beeston, Nottingham, NG9 1AX.</p>
+        <p><strong>Data Controller:</strong> Active AI Ltd, {COMPANY.address}.</p>
         <p>We will only collect personal information that you have voluntarily decided to provide to us or we have recorded from your usage of the Service. We will never sell, rent or give away your personal data to other third parties.</p>
       </div>
 
@@ -47,7 +49,7 @@ import Base from '../layouts/Base.astro';
 
       <h2>Contact</h2>
       <p>
-        Active AI Ltd · 58 Denison Street, Beeston, Nottingham, NG9 1AX<br />
+        Active AI Ltd · {COMPANY.address}<br />
         Email: <a href="mailto:holly@weareactiveai.com">holly@weareactiveai.com</a> · Tel: <a href="tel:+447771346748">07771 346748</a>
       </p>
     </div>
