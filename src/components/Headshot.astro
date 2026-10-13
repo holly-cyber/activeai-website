@@ -1,0 +1,28 @@
+---
+/**
+ * Team headshot, framed as in the partner deck: a chalk circle with a gold ring.
+ * Photos are cut-outs in src/assets/team, named by team id; without one it
+ * shows the person's initials.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props { id: string; name: string; size?: number }
+const { id, name, size = 200 } = Astro.props;
+const files = import.meta.glob<{ default: ImageMetadata }>('../assets/team/*.png', { eager: true });
+const photo = files[`../assets/team/${id}.png`]?.default;
+const initials = name.split(' ').map((p) => p[0]).join('');
+---
+<div class="headshot" style={`--size:${size}px`}>
+  {photo ? (
+    <Image src={photo} alt={name} width={size} height={size} densities={[1, 2]} loading="lazy" />
+  ) : (
+    <span role="img" aria-label={name}>{initials}</span>
+  )}
+</div>
+
+<style>
+  .headshot { width: min(100%, var(--size)); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--chalk); box-shadow: 0 0 0 3px var(--gold); }
+  img { width: 100%; height: 100%; object-fit: cover; }
+  span { display: grid; place-items: center; height: 100%; font-family: var(--font-display); font-size: calc(var(--size) * 0.3); color: var(--navy); }
+</style>
