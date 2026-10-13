@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import Headshot from '../Headshot.astro';
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
-const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
 ---
 <section id="team" class="band band--white" aria-labelledby="team-title">
   <div class="wrap">
@@ -10,9 +10,9 @@ const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
       <h2 id="team-title">The people who built this, and who will scale it.</h2>
     </div>
     <ul role="list" class="grid grid--4">
-      {team.map(({ data }) => (
+      {team.map(({ id, data }) => (
         <li>
-          <div class="head" role="img" aria-label={`Headshot placeholder for ${data.name}`}><span aria-hidden="true">{initials(data.name)}</span></div>
+          <Headshot id={id} name={data.name} />
           <h3>{data.name}</h3>
           <p class="label role">{data.role}</p>
           <p class="muted">{data.short}</p>
@@ -26,9 +26,7 @@ const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
 <style>
   ul { list-style: none; padding: 0; margin: 0; }
   li { display: grid; gap: 0.5rem; align-content: start; }
-  .head { aspect-ratio: 1; border-radius: var(--radius); background: linear-gradient(160deg, var(--navy-3), var(--navy)); display: grid; place-items: center; border: 1px dashed rgba(200, 178, 115, 0.6); }
-  .head span { font-family: var(--font-display); font-size: 4rem; color: var(--gold); }
-  h3 { font-size: var(--step-1); letter-spacing: 0.04em; margin-top: 0.5rem; }
+  h3 { font-size: var(--step-1); letter-spacing: 0.04em; margin-top: 1rem; }
   .role { color: var(--accent-text); margin: 0; }
   li p { margin: 0; font-size: 0.95rem; }
   .more { margin-top: 2rem; font-weight: 500; }

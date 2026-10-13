@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CTAButton from '../components/CTAButton.astro';
+import Headshot from '../components/Headshot.astro';
 import { getCollection } from 'astro:content';
 import { COMPANY, CONTACT } from '../config/site';
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
-const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
 ---
 <Base title="About" description="The team behind Active AI: decades across sport, behaviour change, data and digital platforms. Active AI Ltd, Shap, Cumbria.">
   <PageHero eyebrow="About Active AI" title="Built by people who have lived the problem.">
@@ -20,9 +20,9 @@ const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
         <h2 id="team-title">The people who built this, and who will scale it.</h2>
       </div>
       <ul role="list" class="people">
-        {team.map(({ data }) => (
+        {team.map(({ id, data }) => (
           <li>
-            <div class="head" role="img" aria-label={`Headshot placeholder for ${data.name}`}><span aria-hidden="true">{initials(data.name)}</span></div>
+            <Headshot id={id} name={data.name} size={150} />
             <div>
               <h3>{data.name}</h3>
               <p class="label role">{data.role}</p>
@@ -69,8 +69,6 @@ const initials = (n: string) => n.split(' ').map((p) => p[0]).join('');
   @media (min-width: 900px) { .people { grid-template-columns: 1fr 1fr; gap: 3rem; } }
   .people li { display: grid; grid-template-columns: 110px 1fr; gap: 1.25rem; align-items: start; }
   @media (min-width: 560px) { .people li { grid-template-columns: 150px 1fr; } }
-  .head { aspect-ratio: 1; border-radius: var(--radius); background: linear-gradient(160deg, var(--navy-3), var(--navy)); display: grid; place-items: center; border: 1px dashed rgba(200, 178, 115, 0.6); }
-  .head span { font-family: var(--font-display); font-size: 3rem; color: var(--gold); }
   h3 { font-size: var(--step-2); }
   .role { color: var(--accent-text); margin: 0.3rem 0 0.8rem; }
   .people p.muted { font-size: 0.95rem; }
