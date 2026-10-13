@@ -1,0 +1,57 @@
+---
+import CTAButton from '../CTAButton.astro';
+import { CONTACT } from '../../config/site';
+interface Props { showCloser?: boolean }
+const { showCloser = true } = Astro.props;
+const benefits = [
+  { t: 'White-label athlete app', d: 'Your brand, your community, on iOS and Android.' },
+  { t: 'Momentum on your customers', d: 'Live momentum across your customer base, with all nine moments mapped to your catalogue.' },
+  { t: 'Partner dashboard', d: 'Every moment fired, its conversion and its lift over a control group.' },
+  { t: 'Co-development', d: 'Your use case shapes the product throughout the build.' },
+  { t: 'Preferred commercial terms', d: 'Early partners lock in a lower rate permanently, before standard pricing.' },
+  { t: 'Case study and PR priority', d: 'The first-mover story in sports-tech press, with your results as the proof point.' },
+];
+---
+<section id="beta" class="band band--navy" aria-labelledby="beta-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Beta partnership</p>
+      <h2 id="beta-title">Be first. Shape the platform. <span class="gold">Prove the lift.</span></h2>
+    </div>
+    <ul role="list" class="grid grid--3 benefits">
+      {benefits.map((b) => (
+        <li><span class="tile" aria-hidden="true"></span><h3>{b.t}</h3><p class="muted">{b.d}</p></li>
+      ))}
+    </ul>
+    <p class="now">We're choosing a small group of beta partners. Conversations are happening now.</p>
+    {showCloser && (
+      <div class="closer">
+        <h2 class="big">Your athletes are at peak. <span class="gold">Are you ready?</span></h2>
+        <p class="lede muted">
+          We're looking for a small group of beta sports brand partners to build the future of athlete commerce with us.
+          Preferred terms. A hand in the product. First-mover advantage.
+        </p>
+        <div class="cta">
+          <CTAButton />
+          <p class="mail">Or email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  ul { list-style: none; padding: 0; margin: 0; }
+  .benefits li { background: #1b1b4a; border-radius: var(--radius); padding: 1.5rem; display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 0.9rem; align-content: start; }
+  .tile { width: 1.75rem; height: 1.75rem; border-radius: 6px; background: var(--electric); grid-row: span 1; }
+  h3 { font-family: var(--font-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 1.15rem; line-height: 1.3; align-self: center; }
+  .benefits p { margin: 0; grid-column: 1 / -1; }
+  .gold { color: var(--gold); }
+  .now { margin-top: 2.5rem; font-size: var(--step-1); font-weight: 600; }
+  .closer { margin-top: clamp(4rem, 3rem + 4vw, 6rem); padding-top: clamp(3rem, 2rem + 3vw, 4rem); border-top: 1px solid var(--rule-dark); display: grid; gap: 1.5rem; }
+  .big { font-size: var(--step-4); max-width: 16ch; }
+  .closer .lede { max-width: 60ch; margin: 0; }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; margin-top: 0.5rem; }
+  .mail { margin: 0; color: var(--on-navy-muted); }
+  .mail a { color: var(--chalk); }
+</style>

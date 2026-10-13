@@ -1,0 +1,44 @@
+---
+import Phone from '../Phone.astro';
+import home from '../../assets/screens/home.png';
+import you from '../../assets/screens/you.png';
+const benefits = [
+  { k: 'Your athletes stay engaged.', t: 'Sessions, crews, challenges and routes keep them active between purchases.' },
+  { k: 'You see the moments that matter.', t: 'Momentum is tracked live. You receive the moment, never raw activity, health data or the score.' },
+  { k: 'You reach them at the right time.', t: "Moments fire automatically when they're ready to buy." },
+];
+---
+<section id="product" class="band band--chalk" aria-labelledby="product-title">
+  <div class="wrap inner">
+    <div>
+      <div class="section-head">
+        <p class="eyebrow">The product</p>
+        <h2 id="product-title">Your brand. Your athletes. Their momentum.</h2>
+        <p class="lede muted">A white-label app, or our engine inside yours, that keeps athletes active, celebrates what they achieve and opens your offer at the right moment.</p>
+      </div>
+      <ul role="list">
+        {benefits.map((b) => <li><h3>{b.k}</h3><p class="muted">{b.t}</p></li>)}
+      </ul>
+    </div>
+    <figure class="phones">
+      <div class="pair">
+        <Phone screen="Home" src={home} alt="The app home screen: the athlete's momentum is 52 and up 6 this week, with a plain-English reason, this week's sessions and an easy run suggested for Thursday." />
+        <Phone screen="You" src={you} alt="The You screen: lifetime sessions, distance and time moving, momentum over the long view, and badges the athlete has earned." class="offset" />
+      </div>
+      <figcaption class="label">What the athlete sees</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .inner { display: grid; gap: 3rem; align-items: center; }
+  @media (min-width: 960px) { .inner { grid-template-columns: 1.1fr 0.9fr; } }
+  .phones { margin: 0; display: grid; gap: 1rem; justify-items: center; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; justify-items: center; max-width: 520px; width: 100%; }
+  .pair :global(.offset) { margin-top: 3rem; }
+  .phones figcaption { color: var(--ink-muted); }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+  li { border-left: 3px solid var(--electric); padding-left: 1rem; }
+  h3 { font-family: var(--font-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: var(--step-1); line-height: 1.3; margin-bottom: 0.25rem; }
+  li p { margin: 0; }
+</style>

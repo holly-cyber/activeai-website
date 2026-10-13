@@ -1,0 +1,47 @@
+---
+/**
+ * An app screen. The exports in src/assets/screens are already cut to the phone's
+ * outline, so they render as-is; without `src` it shows a labelled placeholder.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  screen: string;
+  alt: string;
+  src?: ImageMetadata;
+  /** Show the screen name under the phone. */
+  caption?: boolean;
+  class?: string;
+}
+const { screen, alt, src, caption = false, class: className } = Astro.props;
+---
+<figure class:list={['phone', className]}>
+  {src ? (
+    <Image src={src} alt={alt} widths={[260, 436]} sizes="(min-width: 760px) 240px, 45vw" class="screen" loading="lazy" />
+  ) : (
+    <div class="frame">
+      <div class="placeholder" role="img" aria-label={alt}>
+        <span class="notch" aria-hidden="true"></span>
+        <span class="label">App screen placeholder</span>
+        <span class="name">{screen}</span>
+      </div>
+    </div>
+  )}
+  {caption && <figcaption class="label">{screen}</figcaption>}
+</figure>
+
+<style>
+  .phone { margin: 0; width: 100%; max-width: 250px; display: grid; gap: 0.75rem; justify-items: center; }
+  /* drop-shadow follows the transparent corners of the export */
+  .screen { width: 100%; height: auto; filter: drop-shadow(0 18px 28px rgba(0, 0, 54, 0.35)); }
+  .frame { width: 100%; aspect-ratio: 9 / 19.5; border-radius: 34px; padding: 9px; background: #0c0c24; }
+  .placeholder {
+    position: relative; width: 100%; height: 100%; border-radius: 26px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.6rem; text-align: center; padding: 1.25rem;
+    background: linear-gradient(170deg, #1b1b66 0%, #000036 70%); color: var(--chalk);
+  }
+  .notch { position: absolute; top: 10px; width: 34%; height: 18px; border-radius: 12px; background: #0c0c24; }
+  .placeholder .label { color: var(--gold); font-size: 0.62rem; }
+  .name { font-family: var(--font-display); font-size: 1.9rem; line-height: 1; text-transform: uppercase; }
+  figcaption { color: inherit; opacity: 0.85; }
+</style>

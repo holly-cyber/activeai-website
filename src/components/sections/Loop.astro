@@ -1,0 +1,42 @@
+---
+interface Props { id?: string }
+const { id = 'platform' } = Astro.props;
+const steps = [
+  { k: 'Connect', t: 'Athletes opt in and connect the watch or app they already use.' },
+  { k: 'Momentum', t: 'One live score per athlete, updated with every session.' },
+  { k: 'Moment', t: 'When the timing is right, the engine picks the best next action.' },
+  { k: 'Activate', t: 'A push in the app, an offer in the vault, or an event in your CRM.' },
+  { k: 'Prove', t: 'Your dashboard shows every moment and its lift over a control group.' },
+];
+---
+<section id={id} class="band band--navy" aria-labelledby={`${id}-title`}>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The platform loop</p>
+      <h2 id={`${id}-title`}>Behaviour → Momentum → Moment → Revenue.</h2>
+    </div>
+    <ol role="list" class="steps">
+      {steps.map((s, i) => (
+        <li class:list={{ moment: s.k === 'Moment' }}>
+          <span class="i mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.k}</h3>
+          <p class="muted">{s.t}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="closer">The engine spots intent before it shows up in your CRM, and runs inside the revenue tools you already use.</p>
+  </div>
+</section>
+
+<style>
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
+  @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  li { background: var(--navy-2); border-top: 3px solid var(--electric); border-radius: 0 0 var(--radius) var(--radius); padding: 1.4rem 1.25rem 1.6rem; display: grid; gap: 0.6rem; align-content: start; }
+  li.moment { border-top-color: var(--gold); }
+  .i { color: var(--on-navy-muted); font-size: 0.9rem; }
+  .moment .i { color: var(--gold); }
+  h3 { font-size: var(--step-2); }
+  li p { margin: 0; }
+  .closer { margin-top: 2.5rem; font-size: var(--step-1); max-width: 52ch; color: var(--gold); font-weight: 500; }
+</style>

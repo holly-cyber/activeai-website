@@ -1,0 +1,44 @@
+/* Brand tokens — see CLAUDE.md "Brand rules". */
+:root {
+  --navy: #000036;
+  --navy-2: #0b0b4a;
+  --navy-3: #16165c;
+  --electric: #00c2ff; /* fill only, never text */
+  --gold: #c8b273; /* text on navy only */
+  --chalk: #f4f1ec;
+  --white: #ffffff;
+
+  /* Text colours for light backgrounds. The brand values (#0A76A8, #8A7440)
+     pass AA on white but not on Chalk, so Chalk bands use these slightly
+     deeper variants (4.9:1 on Chalk). */
+  --accent-text: #0a6f9e;
+  --gold-text: #7a6636;
+
+  --ink: var(--navy);
+  --ink-muted: #4a4a63; /* 7.6:1 on Chalk */
+  --on-navy: var(--chalk);
+  --on-navy-muted: #b8bcd6; /* 10.6:1 on Navy */
+  --rule-light: rgba(0, 0, 54, 0.18);
+  --rule-dark: rgba(244, 241, 236, 0.22);
+
+  --font-display: 'Bebas Neue', 'Arial Narrow', Impact, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.4vw, 2.3rem);
+  --step-3: clamp(2.2rem, 1.6rem + 2.8vw, 3.8rem);
+  --step-4: clamp(2.8rem, 1.8rem + 5vw, 6rem);
+
+  --gutter: 16px;
+  --max: 1180px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --section-pad: clamp(4rem, 3rem + 5vw, 7.5rem);
+}
+
+@media (min-width: 720px) {
+  :root { --gutter: 32px; }
+}

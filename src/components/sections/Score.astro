@@ -1,0 +1,57 @@
+---
+import { SCORE } from '../../config/site';
+const phases = [
+  { k: 'Building', a: 'Engage', t: 'Challenges and routes that keep momentum climbing.' },
+  { k: 'Peaking', a: 'Sell', t: 'Your offer, when intent is at its highest.' },
+  { k: 'Stalling', a: 'Hold', t: 'Offer held back, and the coach steps in.' },
+];
+---
+<section id="score" class="band band--navy" aria-labelledby="score-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">{SCORE.consumer}</p>
+      <h2 id="score-title">Momentum tells you when to sell.</h2>
+      <p class="lede muted">
+        Active AI turns workouts, challenges and the places athletes move through into one live score per athlete:
+        the {SCORE.name} ({SCORE.abbr}), from 0 to 100, built from layered behavioural signals. <span class="on">The athlete
+        sees their score. You get the moment.</span>
+      </p>
+    </div>
+
+    <figure class="curve" aria-hidden="true">
+      <svg viewBox="0 0 1200 260" preserveAspectRatio="none">
+        <path class="area" d="M0 230 C 220 228, 330 200, 400 160 S 520 70, 600 70 S 760 70, 800 92 S 1000 200, 1200 222 L1200 260 L0 260 Z" />
+        <path class="line" d="M0 230 C 220 228, 330 200, 400 160 S 520 70, 600 70 S 760 70, 800 92 S 1000 200, 1200 222" />
+        <line class="div" x1="400" y1="20" x2="400" y2="260" />
+        <line class="div" x1="800" y1="20" x2="800" y2="260" />
+      </svg>
+      <span class="dot"></span>
+    </figure>
+
+    <ol role="list" class="phases">
+      {phases.map((p) => (
+        <li class:list={{ peak: p.k === 'Peaking' }}>
+          <h3>{p.k} <span aria-hidden="true">→</span><span class="visually-hidden">:</span> {p.a}</h3>
+          <p class="muted">{p.t}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .lede .on { color: var(--chalk); }
+  .curve { position: relative; margin: 0 0 1.5rem; height: clamp(120px, 18vw, 220px); }
+  .curve svg { width: 100%; height: 100%; }
+  .area { fill: rgba(0, 194, 255, 0.12); }
+  .line { fill: none; stroke: var(--electric); stroke-width: 4; vector-effect: non-scaling-stroke; }
+  .div { stroke: var(--rule-dark); stroke-dasharray: 4 6; vector-effect: non-scaling-stroke; }
+  .dot { position: absolute; left: 50%; top: calc(70 / 260 * 100%); width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 10px rgba(200, 178, 115, 0.2); }
+  .phases { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.5rem; }
+  @media (min-width: 760px) { .phases { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .phases li { border-left: 3px solid var(--electric); padding-left: 1rem; }
+  .phases li.peak { border-left-color: var(--chalk); }
+  .phases li:last-child { border-left-color: var(--rule-dark); }
+  h3 { font-size: var(--step-2); margin-bottom: 0.4rem; }
+  .phases p { margin: 0; }
+</style>

@@ -1,0 +1,19 @@
+---
+interface Props { eyebrow: string; title: string }
+const { eyebrow, title } = Astro.props;
+---
+<section class="page-hero band band--navy" aria-labelledby="page-title">
+  <div class="wrap">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 id="page-title">{title}</h1>
+    <p class="lede"><slot /></p>
+    {Astro.slots.has('actions') && <div class="actions"><slot name="actions" /></div>}
+  </div>
+</section>
+
+<style>
+  .page-hero { padding-block: clamp(3rem, 2rem + 4vw, 5.5rem); }
+  h1 { font-size: var(--step-4); max-width: 16ch; }
+  .lede { margin-top: 1.5rem; color: var(--on-navy-muted); max-width: 56ch; }
+  .actions { margin-top: 2rem; }
+</style>

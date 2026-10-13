@@ -1,0 +1,50 @@
+---
+/*
+ * Ported word for word from the live site's cookie policy (supplied by Holly,
+ * 23 Sept 2026), with the address updated on Holly's instruction. Do not edit
+ * the wording here; policy changes are Holly's call.
+ */
+import Base from '../layouts/Base.astro';
+import { COMPANY } from '../config/site';
+---
+<Base title="Cookie policy" description="What cookies are, how Active AI Ltd uses them and how you can manage them.">
+  <section class="band band--chalk">
+    <div class="wrap prose">
+      <p class="eyebrow">Legal</p>
+      <h1>Cookie Policy</h1>
+      <p class="meta label">Active AI Ltd</p>
+
+      <h2>What is a Cookie?</h2>
+      <p>A cookie is a piece of information stored on your device that records how you move around a website. When you revisit, the site can present tailored options based on your last visit. Cookies are used by nearly all websites and do not harm your system.</p>
+
+      <h2>How We Use Cookies</h2>
+      <p>We use cookies to track your use of our website. This enables us to understand how you use the site, monitor patterns, and develop and improve our website and services in response to what you might need or want.</p>
+
+      <h2>Types of Cookie</h2>
+      <p><strong>Session cookies</strong> are only stored during your web session and are automatically deleted when you close your browser. They store an anonymous session ID allowing you to browse without logging in to each page.</p>
+      <p><strong>Persistent cookies</strong> remain on your device when you close your browser and can be read by the website that created them on your next visit. We use persistent cookies for Google Analytics.</p>
+
+      <h2>Cookie Categories</h2>
+      <p><strong>Strictly necessary cookies</strong> are essential to enable you to use the website effectively and cannot be turned off. They do not gather information for marketing purposes.</p>
+      <p><strong>Performance cookies</strong> enable us to monitor and improve our website — counting visits, identifying traffic sources, and seeing which parts of the site are most popular.</p>
+      <p><strong>Functionality cookies</strong> allow our website to remember choices you make and provide enhanced features. Information collected is usually anonymised.</p>
+
+      <h2>Managing Cookies</h2>
+      <p>You can check or change what types of cookies you accept within your browser settings. You can block cookies at any time, though blocking all cookies may prevent access to parts of our site.</p>
+
+      <h2>Third Parties</h2>
+      <p>Third parties who provide services on our website (such as analytics providers) may also use cookies over which we have no control. These are likely to be analytical or performance cookies.</p>
+
+      <h2>Contact</h2>
+      <p>
+        Active AI Ltd · {COMPANY.address}<br />
+        Email: <a href="mailto:holly@weareactiveai.com">holly@weareactiveai.com</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 { font-size: var(--step-3); }
+  .meta { color: var(--ink-muted); margin: 1rem 0 2rem; }
+</style>

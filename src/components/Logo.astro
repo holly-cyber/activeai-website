@@ -1,0 +1,15 @@
+---
+/**
+ * The Velocity logo from the Active AI design system (Logos group).
+ * `reverse` is for navy grounds. The design system only allows the speed lines
+ * when the A is at least 40px tall, so the logo is never set shorter than 54px.
+ */
+interface Props { reverse?: boolean; class?: string }
+const { reverse = true, class: className } = Astro.props;
+const src = reverse ? '/brand/active-ai-logo-reverse.svg' : '/brand/active-ai-logo.svg';
+---
+<img src={src} alt="Active AI" width="629" height="144" class:list={['logo', className]} />
+
+<style>
+  .logo { height: 54px; width: auto; max-width: none; }
+</style>

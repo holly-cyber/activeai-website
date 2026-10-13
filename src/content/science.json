@@ -1,0 +1,31 @@
+[
+  {
+    "id": "self-determination",
+    "name": "Self-Determination Theory",
+    "researchers": "Deci & Ryan",
+    "athlete": "Athletes keep going when they feel competent, in control and connected.",
+    "product": "Crews, personal milestones and choice-led challenges are built around those three needs.",
+    "order": 1
+  },
+  {
+    "id": "habit-formation",
+    "name": "Habit formation",
+    "athlete": "Consistency beats intensity.",
+    "product": "Streaks and weekly rhythms reward showing up, and quiet weeks never count as a zero.",
+    "order": 2
+  },
+  {
+    "id": "goal-gradient",
+    "name": "Goal-gradient effect",
+    "athlete": "Motivation rises as the finish line gets closer.",
+    "product": "Challenge and route progress keeps that finish line visible.",
+    "order": 3
+  },
+  {
+    "id": "social-belonging",
+    "name": "Social belonging",
+    "athlete": "People move more with a group they identify with.",
+    "product": "Crews and local leaderboards are scoped to the athlete's own area and pace.",
+    "order": 4
+  }
+]

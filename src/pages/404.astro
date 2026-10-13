@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found" description="This page could not be found." noindex>
+  <section class="band band--navy nf">
+    <div class="wrap">
+      <p class="eyebrow">404 · Off route</p>
+      <h1>This trail doesn't go anywhere.</h1>
+      <p class="lede">The page you were looking for has moved or never existed. Head back to base and pick up the route from there.</p>
+      <a class="btn btn--primary" href="/">Back to home <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { min-height: 60vh; display: grid; align-items: center; }
+  h1 { max-width: 14ch; }
+  .lede { margin: 1.5rem 0 2rem; color: var(--on-navy-muted); }
+</style>
