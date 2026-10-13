@@ -1,11 +1,15 @@
 ---
-/* PLACEHOLDER wordmark set in type until Holly supplies the SVG logo. */
-interface Props { class?: string }
-const { class: className } = Astro.props;
+/**
+ * The Velocity logo from the Active AI design system (Logos group).
+ * `reverse` is for navy grounds. The design system only allows the speed lines
+ * when the A is at least 40px tall, so the logo is never set shorter than 54px.
+ */
+interface Props { reverse?: boolean; class?: string }
+const { reverse = true, class: className } = Astro.props;
+const src = reverse ? '/brand/active-ai-logo-reverse.svg' : '/brand/active-ai-logo.svg';
 ---
-<span class:list={['logo', className]} aria-label="Active.AI">Active<span class="dot">.AI</span></span>
+<img src={src} alt="Active AI" width="629" height="144" class:list={['logo', className]} />
 
 <style>
-  .logo { font-family: var(--font-display); font-size: 1.9rem; letter-spacing: 0.02em; line-height: 1; text-transform: uppercase; }
-  .dot { color: var(--gold); }
+  .logo { height: 54px; width: auto; max-width: none; }
 </style>

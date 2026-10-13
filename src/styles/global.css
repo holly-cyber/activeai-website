@@ -75,6 +75,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
 
 .band { padding-block: var(--section-pad); position: relative; }
 .band--navy { background: var(--navy); color: var(--on-navy); }
+.band--navy + .band--navy { border-top: 1px solid var(--rule-dark); }
 .band--chalk { background: var(--chalk); color: var(--ink); }
 .band--white { background: var(--white); color: var(--ink); }
 .band--white .eyebrow { color: #8a7440; }

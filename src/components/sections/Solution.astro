@@ -1,14 +1,13 @@
 ---
-import { SCORE } from '../../config/site';
 const without = [
-  'Sarah runs a 10K personal best. No signal fires. Nothing changes in your system.',
-  'Days later, your scheduled email goes out. Same message, same offer, to every athlete.',
-  'She has already bought from a competitor who reached her first. The moment has passed.',
+  'Sarah runs a 10K PB. Nothing fires, and nothing changes in your system.',
+  '72 hours later your weekly batch email goes out. Same message, same offer, every athlete.',
+  "She's already bought from a competitor who reached her first.",
 ];
 const withAi = [
-  `Sarah's PB registers straight away and her ${SCORE.name} moves into the Peak band.`,
-  'A personal Momentum Unlock reaches her inside the window: the right product, the right message.',
-  'She buys from you. And her activity keeps feeding her score for next time.',
+  'Her PB is picked up straight away, and her momentum is peaking.',
+  'The New Personal Best moment reaches your CRM: the right product, the right message, inside the 2-hour window.',
+  'She buys from you, and the sale is matched to the moment that caused it.',
 ];
 ---
 <section id="solution" class="band band--white" aria-labelledby="solution-title">
@@ -27,7 +26,6 @@ const withAi = [
         <ol role="list">{withAi.map((t) => <li>{t}</li>)}</ol>
       </div>
     </div>
-    <p class="closer">Active AI turns athlete momentum into a commercial signal, automatically and in real time, inside your existing systems.</p>
   </div>
 </section>
 
@@ -43,5 +41,4 @@ const withAi = [
   li { counter-increment: step; display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.5rem; }
   li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.8rem; padding-top: 0.25rem; }
   .with li::before { color: var(--electric); }
-  .closer { margin-top: 2.5rem; font-size: var(--step-1); max-width: 50ch; }
 </style>

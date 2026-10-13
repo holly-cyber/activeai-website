@@ -1,47 +1,57 @@
 ---
 import { SCORE } from '../../config/site';
-const layers = [
-  { name: 'Physical activity', text: 'Movement, effort and performance signals from wearables and the app.' },
-  { name: 'Engagement', text: 'How athletes use the app: challenges, crews and community.' },
-  { name: 'Context', text: 'Situational signals that sharpen the picture.' },
+const phases = [
+  { k: 'Building', a: 'Engage', t: 'Challenges and routes that keep momentum climbing.' },
+  { k: 'Peaking', a: 'Sell', t: 'Your offer, when intent is at its highest.' },
+  { k: 'Stalling', a: 'Hold', t: 'Offer held back, and the coach steps in.' },
 ];
-const bands = ['Stable', 'Rising', 'Intent', 'Momentum', 'Peak'];
 ---
-<section id="score" class="band band--chalk" aria-labelledby="score-title">
+<section id="score" class="band band--navy" aria-labelledby="score-title">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">The score</p>
-      <h2 id="score-title">The {SCORE.name}.</h2>
+      <p class="eyebrow">{SCORE.consumer}</p>
+      <h2 id="score-title">Momentum tells you when to sell.</h2>
       <p class="lede muted">
-        A real-time score for every athlete, built from several layers of behavioural signal. When it says the moment
-        is right, the right Momentum Unlock fires. How the layers combine is ours to keep.
+        Active AI turns workouts, challenges and the places athletes move through into one live score per athlete:
+        the {SCORE.name} ({SCORE.abbr}), from 0 to 100, built from layered behavioural signals. <span class="on">The athlete
+        sees their score. You get the moment.</span>
       </p>
     </div>
-    <div class="grid grid--3">
-      {layers.map((l) => (
-        <article class="ruled">
-          <p class="label layer">Signal layer</p>
-          <h3>{l.name}</h3>
-          <p class="muted">{l.text}</p>
-        </article>
+
+    <figure class="curve" aria-hidden="true">
+      <svg viewBox="0 0 1200 260" preserveAspectRatio="none">
+        <path class="area" d="M0 230 C 220 228, 330 200, 400 160 S 520 70, 600 70 S 760 70, 800 92 S 1000 200, 1200 222 L1200 260 L0 260 Z" />
+        <path class="line" d="M0 230 C 220 228, 330 200, 400 160 S 520 70, 600 70 S 760 70, 800 92 S 1000 200, 1200 222" />
+        <line class="div" x1="400" y1="20" x2="400" y2="260" />
+        <line class="div" x1="800" y1="20" x2="800" y2="260" />
+      </svg>
+      <span class="dot"></span>
+    </figure>
+
+    <ol role="list" class="phases">
+      {phases.map((p) => (
+        <li class:list={{ peak: p.k === 'Peaking' }}>
+          <h3>{p.k} <span aria-hidden="true">→</span><span class="visually-hidden">:</span> {p.a}</h3>
+          <p class="muted">{p.t}</p>
+        </li>
       ))}
-    </div>
-    <div class="bands">
-      <p class="label">Score bands</p>
-      <ul role="list">
-        {bands.map((b, i) => <li class={`b b${i}`}>{b}</li>)}
-      </ul>
-    </div>
+    </ol>
   </div>
 </section>
 
 <style>
-  h3 { font-size: var(--step-2); margin: 0.4rem 0 0.6rem; }
-  .layer { color: var(--accent-text); margin: 0; }
-  .bands { margin-top: 3rem; display: grid; gap: 1rem; }
-  .bands .label { margin: 0; color: var(--ink-muted); }
-  ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .b { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.55rem 1rem; border-radius: 999px; border: 1px solid var(--navy); }
-  .b3 { background: var(--navy-3); color: var(--chalk); border-color: var(--navy-3); }
-  .b4 { background: var(--electric); color: var(--navy); border-color: var(--electric); font-weight: 500; }
+  .lede .on { color: var(--chalk); }
+  .curve { position: relative; margin: 0 0 1.5rem; height: clamp(120px, 18vw, 220px); }
+  .curve svg { width: 100%; height: 100%; }
+  .area { fill: rgba(0, 194, 255, 0.12); }
+  .line { fill: none; stroke: var(--electric); stroke-width: 4; vector-effect: non-scaling-stroke; }
+  .div { stroke: var(--rule-dark); stroke-dasharray: 4 6; vector-effect: non-scaling-stroke; }
+  .dot { position: absolute; left: 50%; top: calc(70 / 260 * 100%); width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 10px rgba(200, 178, 115, 0.2); }
+  .phases { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.5rem; }
+  @media (min-width: 760px) { .phases { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .phases li { border-left: 3px solid var(--electric); padding-left: 1rem; }
+  .phases li.peak { border-left-color: var(--chalk); }
+  .phases li:last-child { border-left-color: var(--rule-dark); }
+  h3 { font-size: var(--step-2); margin-bottom: 0.4rem; }
+  .phases p { margin: 0; }
 </style>

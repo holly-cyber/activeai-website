@@ -1,15 +1,15 @@
 # weareactiveai.com
 
-Marketing site for Active AI. It sells one thing: a white-label athlete app or API that keeps athletes engaged, scores their momentum and fires a Momentum Unlock when they are ready to buy, offered to a small cohort of beta partners.
+Marketing site for Active AI. It sells one thing: the behavioural intelligence platform that keeps a brand's customers active and knows when they're ready to buy (a white-label athlete app, an API into the partner's app, or moments straight into their CRM), offered to a small group of beta partners. The home page follows the October 2026 partner deck, section for section; when a newer deck lands, it wins.
 
 This is a marketing site, not a platform component. It does not live in the monorepo and imports nothing from it.
 
 ## Stack
 
-- Astro (static output), plain CSS with custom properties, scoped component styles. No UI framework; the only client JS is the nav disclosure, the engage tabs, the score-ring animation and the old-anchor remap.
+- Astro (static output), plain CSS with custom properties, scoped component styles. No UI framework; the only client JS is the nav disclosure, the engage tabs and the old-anchor remap.
 - Fonts self-hosted via `@fontsource`: Bebas Neue (display), Poppins (body), DM Mono (eyebrows, labels, data).
-- Images through `astro:assets` (`Photo.astro`, `Phone.astro`). Both render labelled placeholders until real, licensed files are passed in.
-- Copy that repeats or will grow lives in content collections (`src/content/*.json`, schemas in `src/content.config.ts`): `unlocks`, `team`, `engage`, `science`, `faq`.
+- Images through `astro:assets`. `Phone.astro` shows the app screens in `src/assets/screens`; `Photo.astro` renders a labelled placeholder until real, licensed photos are passed in.
+- Copy that repeats or will grow lives in content collections (`src/content/*.json`, schemas in `src/content.config.ts`): `moments`, `team`, `engage`, `science`, `faq`. App screens are PNG exports in `src/assets/screens`, cut to the phone outline.
 - Names, email, company details and nav live in `src/config/site.ts`. Never hard-code the score name or the email address anywhere else. In content files, write `{score}` and render it with `withScore()`.
 - Deploy: Netlify builds from GitHub (`netlify.toml`). Deploy previews on every PR.
 
@@ -27,15 +27,17 @@ This is a marketing site, not a platform component. It does not live in the mono
 - Blue text: `#0A76A8` on white; `--accent-text` (`#0A6F9E`) on Chalk. Gold text on light: `#8A7440` on white; `--gold-text` (`#7A6636`) on Chalk. The brand values fail AA on Chalk, hence the deeper variants. Gold `#C8B273` as text on Navy only.
 - Bebas Neue uppercase for headlines, Poppins for body, DM Mono letter-spaced for eyebrows, labels and data.
 - Alternating Navy and Chalk bands, gold eyebrow labels, thin rules above column headings.
-- Wordmark **Active.AI** in the logo; **Active AI** in running copy.
+- Logos come from the Active AI design system (its Logos group; Holly can share it), copied into `public/brand/`. Never retype the wordmark. The speed lines need the A at 40px+ tall, so the logo is never set below 54px high. Favicon and touch icon are the design system's icons.
+- **Active AI** in running copy.
 
 ## Content rules (hard)
 
 - British English. Plain, confident, short sentences. Deck wording wins over old site wording.
-- The score is the **Brand Momentum Score (BMS)**. The old name and abbreviation must never appear.
-- Public unlocks: **Epic Route Completed, New Personal Best, Gear Replacement** only. Only Epic Route Completed shows a rate (74%, modelled). Never state or imply how many unlocks exist in total.
+- The score is the **Behavioural Momentum Score (BMS)**; athletes see it as **Athlete Momentum**. "Brand Momentum Score" is wrong, and the old name and abbreviation must never appear.
+- They are **moments**, not unlocks. The nine moment names and their windows are public, as in the October deck (Epic Route Completed is the top moment). Nothing about what makes a moment fire: no trigger conditions, no conversion rates per moment.
+- The commercial phases are Building → Engage, Peaking → Sell, Stalling → Hold.
 - No prices. Show beta benefits and "preferred commercial terms, locked permanently".
-- Every performance figure is labelled "modelled"; the dashboard carries "illustrative" and a fictional brand.
+- Every performance figure is labelled "modelled" or sourced (the 13× figure cites Klaviyo 2026 benchmarks); the dashboard carries "illustrative" and an example brand.
 - **No methodology anywhere in the repo or on the page**: no layer weights or point values, no formula, no thresholds, no band score ranges, no citations that would let someone rebuild the model. Signal layer and band *names* are fine. This applies to commit messages and PR descriptions too: describe withheld material by category, never by content.
 - Science section: theory names and at most researchers' surnames. No formulas, dates, journals, "Nobel"/"MIT", neurochemistry, and no link between a theory and how the score is built. Loss aversion is left out.
 - Athlete-care language stays in: plateau is a care signal, quiet weeks never count as zero, one location read per tap. No "exploit", "hook", "dopamine", "neurochemical window" or manufactured urgency.

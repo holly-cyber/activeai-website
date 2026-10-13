@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CTAButton from '../components/CTAButton.astro';
 import Beta from '../components/sections/Beta.astro';
-import Roadmap from '../components/sections/Roadmap.astro';
 const whoFor = [
   { t: 'Sports brands', d: 'Keep athletes close between purchases and show up when it counts.' },
   { t: 'Retailers', d: 'Turn a one-off transaction into an ongoing relationship with active customers.' },
@@ -13,11 +12,11 @@ const whoFor = [
 ---
 <Base
   title="Beta partner programme"
-  description="Join a small cohort of Active AI beta partners: a white-label athlete app or API, co-development rights and preferred commercial terms, locked permanently. Live in 8–12 weeks."
+  description="Join a small group of Active AI beta partners: a white-label athlete app or API, co-development, and preferred commercial terms locked in permanently."
 >
-  <PageHero eyebrow="Beta partner programme" title="Be one of the first. Shape what comes next.">
-    We are working with a small cohort of partners to take the platform live. You get the product early, a direct line
-    into the roadmap and preferred commercial terms, locked permanently.
+  <PageHero eyebrow="Beta partner programme" title="Be first. Shape the platform. Prove the lift.">
+    We're choosing a small group of beta partners to build the future of athlete commerce with us. Preferred terms. A
+    hand in the product. First-mover advantage.
     <Fragment slot="actions"><CTAButton /></Fragment>
   </PageHero>
 
@@ -34,7 +33,6 @@ const whoFor = [
   </section>
 
   <Beta showCloser={false} />
-  <Roadmap />
 
   <section class="band band--chalk" aria-labelledby="next-title">
     <div class="wrap next">

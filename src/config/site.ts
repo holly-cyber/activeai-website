@@ -1,6 +1,7 @@
 /**
  * Single source of truth for names, contact details and navigation.
- * D-W1: the score is the Brand Momentum Score (BMS). Change it here, nowhere else.
+ * D-W1: the score is the Behavioural Momentum Score (BMS); athletes see it as
+ * Athlete Momentum. Change it here, nowhere else.
  * D-W5: enquiries are email only, to the address below.
  */
 export const SITE = {
@@ -8,13 +9,15 @@ export const SITE = {
   url: 'https://weareactiveai.com',
   tagline: 'Turning athlete momentum into revenue.',
   description:
-    'A white-label athlete app or API that keeps athletes engaged, scores their momentum and fires a Momentum Unlock when they are ready to buy. Now selecting a small cohort of beta partners.',
+    "The behavioural intelligence platform that keeps your customers active, and knows when they're ready to buy. Now choosing a small group of beta partners.",
   ogImage: '/og.png',
 } as const;
 
 export const SCORE = {
-  name: 'Brand Momentum Score',
+  name: 'Behavioural Momentum Score',
   abbr: 'BMS',
+  /** What the athlete sees in the app. */
+  consumer: 'Athlete Momentum',
 } as const;
 
 export const COMPANY = {
@@ -55,7 +58,8 @@ export const NAV = [
 
 /** Old anchors from the single-file site, remapped client-side. */
 export const HASH_REDIRECTS: Record<string, string> = {
-  triggers: 'unlocks',
+  triggers: 'moments',
+  unlocks: 'moments',
   why: 'solution',
   contact: 'beta',
 };

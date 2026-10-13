@@ -3,21 +3,17 @@
     "id": "crews",
     "eyebrow": "Social",
     "title": "Crews",
-    "intro": "Athletes join local crews, find groups by pace and place, and battle other crews on shared division tables. Training together keeps people training.",
-    "stats": [
-      { "value": "22%", "text": "more km during crew battles", "label": "modelled" },
-      { "value": "3.4×", "text": "session frequency in battle mode", "label": "modelled" }
-    ],
+    "headline": "Crews turn training into a team sport.",
+    "intro": "Athletes join local crews and play a weekly fixture against a rival crew, scored on the days each member shows up. Divisions promote and relegate each season, so showing up for the crew matters.",
     "points": [
-      "Find a crew nearby, matched to your pace",
-      "Weekly crew battles on a division table",
-      "Everyone's effort counts towards the crew total"
+      "Weekly fixtures and a season ladder.",
+      "Quiet weeks never count as a zero, so nobody is shamed.",
+      "Promotion milestones for every active member."
     ],
-    "privacy": "Quiet weeks never count as zero. Nobody lets their crew down by resting.",
+    "privacy": "Crews see other crews' averages, never their members, their size or their scores.",
     "screens": [
-      { "name": "Crews", "alt": "The Crews screen, showing the athlete's crew, its members and this week's battle." },
-      { "name": "Division table", "alt": "A division table ranking local crews by this week's combined distance." },
-      { "name": "Near You", "alt": "The Near You screen, listing crews close to the athlete, filtered by pace." }
+      { "file": "crews", "name": "Crews", "alt": "The Crews screen: Thursday Club is just ahead of Ridge Runners in this week's fixture, with the days each member has shown up and moments to boost." },
+      { "file": "division", "name": "Division 3", "alt": "A Division 3 table of six local crews, with promotion and relegation places and this week's fixtures scored per member." }
     ],
     "order": 1
   },
@@ -25,20 +21,18 @@
     "id": "challenges",
     "eyebrow": "Competition",
     "title": "Challenges",
-    "intro": "Branded distance and streak challenges with live progress, leaderboards and a clear finish line. Your brand is there for the whole journey, not just the checkout.",
-    "stats": [
-      { "value": "38%", "text": "higher {score} for challenge participants", "label": "modelled" },
-      { "value": "2×", "text": "purchase rate versus non-participants", "label": "modelled" }
-    ],
+    "headline": "Challenges land near the athlete, not in their inbox.",
+    "intro": "Your branded challenge appears on the map a few kilometres from the athlete, pitched at their level. Finishing fires the Challenge Completed moment and drops your reward into their vault.",
     "points": [
-      "Distance and streak challenges in your brand",
-      "Live progress bars and leaderboards",
-      "Finishing is a moment worth recognising"
+      "Sponsored distance, summit and streak challenges.",
+      "Leaderboards scoped to the athlete's area and pace.",
+      "A finisher badge, a crew notification and a product reveal."
     ],
-    "privacy": "Athletes choose which challenges to join. Nothing is entered on their behalf.",
+    "privacy": "There is no global table, and nobody is shown below anyone they know.",
     "screens": [
-      { "name": "100K November", "alt": "The 100K November challenge, showing the athlete's progress towards 100 kilometres." },
-      { "name": "Summit Reached", "alt": "A challenge completion screen celebrating the athlete reaching the summit." }
+      { "file": "near-you-today", "name": "Near you today", "alt": "The Near You Today map, showing bronze markers, silver routes and a gold marker close to the athlete, and three markers collected on a morning run." },
+      { "file": "challenge-100k", "name": "100K November", "alt": "The 100K November challenge leaderboard, showing only the runners around the athlete's own pace in their area." },
+      { "file": "summit-reached", "name": "Summit reached", "alt": "A Summit Reached screen for a sponsored 10K challenge: the badge is the athlete's for good, with options to tell their crew or share." }
     ],
     "order": 2
   },
@@ -46,20 +40,19 @@
     "id": "routes",
     "eyebrow": "Location",
     "title": "Routes & markers",
-    "intro": "Routes and markers turn local places into things worth reaching. Completing an epic route or claiming a gold marker is a moment the engine can respond to straight away.",
-    "stats": [
-      { "value": "74%", "text": "conversion on Epic Route Completed", "label": "modelled" },
-      { "value": "2hr", "text": "unlock window after route completion", "label": "modelled" }
-    ],
+    "headline": "Routes and markers make every run a moment.",
+    "intro": "Bronze markers are collected automatically from a run recorded in the app or synced from Garmin. Silver routes are run in order. Gold markers sit outside your door: the athlete taps to claim, in person, while stock lasts.",
+    "callout": { "value": "2 HR", "text": "offer window after a route is completed" },
     "points": [
-      "Curated local routes, from river loops to summits",
-      "Gold markers to find and claim along the way",
-      "Every completed route feeds the athlete's momentum"
+      "Completing a route opens a timed offer at your store.",
+      "Gold markers drive verified footfall to a flagship.",
+      "One location read per tap. Nothing tracks in the background."
     ],
-    "privacy": "One location read per tap. We check where an athlete is only when they ask us to.",
+    "privacy": "Ignore an offer and it expires quietly. It won't come back later, and nothing chases the athlete.",
     "screens": [
-      { "name": "Mill Race", "alt": "The Mill Race route page, with a map of the route and its markers." },
-      { "name": "Gold marker claim", "alt": "The moment an athlete claims a gold marker on a route." }
+      { "file": "near-you-routes", "name": "Near you", "alt": "The Near You map of silver routes and markers, with a route in progress and markers claimed automatically from a synced run." },
+      { "file": "mill-race", "name": "Mill Race", "alt": "A Silver Route Complete screen for Mill Race, with route points earned and a timed offer from an example brand the athlete can open or ignore." },
+      { "file": "gold-marker", "name": "Gold marker", "alt": "A gold marker at an example brand's store, limited to forty this week, with a button to claim it in person." }
     ],
     "order": 3
   }

@@ -2,21 +2,14 @@ import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-/** Every figure on the site carries a label (D-W4). */
-const stat = z.object({
-  value: z.string(),
-  text: z.string(),
-  label: z.enum(['modelled', 'illustrative']),
-});
-
-// D-W2: three public unlocks only. Do not add more entries here.
-const unlocks = defineCollection({
-  loader: file('src/content/unlocks.json'),
+// D-W2 (October deck): the nine moments are public, with their windows. No
+// conversion rates, trigger conditions or thresholds belong here.
+const moments = defineCollection({
+  loader: file('src/content/moments.json'),
   schema: z.object({
     name: z.string(),
     window: z.string(),
-    moment: z.string(),
-    rate: stat.optional(),
+    summary: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number(),
   }),
@@ -39,11 +32,13 @@ const engage = defineCollection({
   schema: z.object({
     eyebrow: z.string(),
     title: z.string(),
+    headline: z.string(),
     intro: z.string(),
-    stats: z.array(stat),
+    callout: z.object({ value: z.string(), text: z.string() }).optional(),
     points: z.array(z.string()).length(3),
     privacy: z.string(),
-    screens: z.array(z.object({ name: z.string(), alt: z.string() })),
+    /** `file` is the PNG name in src/assets/screens. */
+    screens: z.array(z.object({ file: z.string(), name: z.string(), alt: z.string() })),
     order: z.number(),
   }),
 });
@@ -65,4 +60,4 @@ const faq = defineCollection({
   schema: z.object({ question: z.string(), order: z.number().default(0) }),
 });
 
-export const collections = { unlocks, team, engage, science, faq };
+export const collections = { moments, team, engage, science, faq };

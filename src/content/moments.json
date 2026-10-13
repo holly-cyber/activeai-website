@@ -1,0 +1,11 @@
+[
+  { "id": "epic-route-completed", "name": "Epic Route Completed", "window": "2-hour window", "featured": true, "order": 1 },
+  { "id": "gear-replacement", "name": "Gear Replacement", "window": "2 days", "order": 2 },
+  { "id": "new-personal-best", "name": "New Personal Best", "window": "2 hours", "order": 3 },
+  { "id": "race-prep-window", "name": "Race Prep Window", "window": "72 hours", "order": 4 },
+  { "id": "streak-milestone", "name": "Streak Milestone", "window": "1 day", "order": 5 },
+  { "id": "challenge-completed", "name": "Challenge Completed", "window": "1 hour", "order": 6 },
+  { "id": "training-load-peak", "name": "Training Load Peak", "window": "72 hours", "order": 7 },
+  { "id": "new-location-explored", "name": "New Location Explored", "window": "24 hours", "order": 8 },
+  { "id": "community-achievement", "name": "Community Achievement", "window": "24 hours", "order": 9 }
+]

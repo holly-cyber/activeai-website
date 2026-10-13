@@ -1,0 +1,71 @@
+---
+const steps = [
+  { k: 'Athletes connect', t: 'They opt in and connect their watch or app, on the web or in your app.' },
+  { k: 'Active AI finds the moment', t: 'Momentum is updated live, and holds are checked on every event.' },
+  { k: 'Webhook to your CRM', t: "The moment lands as a real-time event on the athlete's CRM profile." },
+  { k: 'Your journey runs', t: 'Your team owns the channel, copy and offer. Orders post back to us.' },
+];
+const youSend = ['Athlete ID mapped to your CRM ID', 'Consent and opt-out status', 'Order events, so we can measure the result'];
+const weSend = ['Moments as real-time webhooks', 'Pause flags: a do-not-send window, no reason given', 'Conversion by moment against a control group'];
+---
+<section id="crm" class="band band--chalk" aria-labelledby="crm-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">API + CRM integration</p>
+      <h2 id="crm-title">We find the moment. Your CRM sends the message.</h2>
+    </div>
+    <ol role="list" class="flow">
+      {steps.map((s, i) => (
+        <li class:list={{ us: i === 1 }}>
+          <span class="i mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{s.k}</h3>
+          <p>{s.t}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="cols">
+      <div class="col">
+        <h3 class="label">You send us</h3>
+        <ul role="list">{youSend.map((t) => <li>{t}</li>)}</ul>
+      </div>
+      <div class="col we">
+        <h3 class="label">We send you</h3>
+        <ul role="list">{weSend.map((t) => <li>{t}</li>)}</ul>
+      </div>
+      <figure class="code">
+        <figcaption class="label">POST · your CRM webhook</figcaption>
+        <pre><code>{'{'}
+  "event": <span class="v">"moment.fired"</span>,
+  "crm_id": <span class="v">"48213"</span>,
+  "moment": <span class="v">"epic_route_completed"</span>,
+  "window_hours": <span class="v">2</span>
+{'}'}</code></pre>
+      </figure>
+    </div>
+    <p class="note muted">Illustrative payload. No score or band is ever sent.</p>
+  </div>
+</section>
+
+<style>
+  .flow { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
+  @media (min-width: 640px) { .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1040px) { .flow { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .flow li { background: var(--white); border: 1px solid var(--rule-light); border-radius: var(--radius); padding: 1.4rem; display: grid; gap: 0.5rem; align-content: start; }
+  .flow li.us { background: var(--navy); color: var(--chalk); border-color: var(--navy); }
+  .flow .i { color: var(--accent-text); }
+  .flow .us .i { color: var(--on-navy-muted); }
+  .flow h3 { font-family: var(--font-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 1.15rem; line-height: 1.3; }
+  .flow p { margin: 0; color: var(--ink-muted); }
+  .flow .us p { color: var(--on-navy-muted); }
+  .cols { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+  @media (min-width: 900px) { .cols { grid-template-columns: 1fr 1fr 1.2fr; } }
+  .col { border-top: 3px solid var(--navy); padding-top: 1rem; }
+  .col.we { border-top-color: var(--electric); }
+  .col .label { font-family: var(--font-mono); font-size: 0.8rem; margin: 0 0 0.75rem; }
+  .col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; color: var(--ink-muted); }
+  .code { margin: 0; background: var(--navy); color: var(--chalk); border-radius: var(--radius); padding: 1.4rem; overflow-x: auto; }
+  .code figcaption { color: var(--on-navy-muted); margin-bottom: 0.75rem; }
+  pre { margin: 0; font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.7; }
+  pre .v { color: var(--gold); }
+  .note { margin-top: 1.5rem; font-size: 0.9rem; }
+</style>
