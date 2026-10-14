@@ -1,14 +1,25 @@
 ---
+import { Picture } from 'astro:assets';
 import CTAButton from '../CTAButton.astro';
-import Photo from '../Photo.astro';
+import heroImage from '../../assets/hero-trail-runner.jpg';
 ---
 <section class="hero band band--navy" aria-labelledby="hero-title">
+  <Picture
+    src={heroImage}
+    alt="A trail runner climbing a rocky ridge high above the clouds."
+    class="hero-img"
+    widths={[640, 960, 1440, 1920, 2880]}
+    sizes="100vw"
+    formats={['avif', 'webp']}
+    loading="eager"
+    fetchpriority="high"
+  />
   <div class="wrap inner">
     <div class="copy">
       <p class="eyebrow">Beta partner programme · now open</p>
       <h1 id="hero-title">Turning athlete momentum into revenue.</h1>
       <p class="lede">
-        The behavioural intelligence platform that keeps your customers active, and knows when they're ready to
+        The behavioural intelligence platform that keeps your customers engaged, and knows when they're ready to
         buy.
       </p>
       <div class="ctas">
@@ -16,24 +27,29 @@ import Photo from '../Photo.astro';
         <a class="btn btn--ghost" href="#platform">See how it works</a>
       </div>
     </div>
-    <Photo
-      class="hero-photo"
-      alt="A trail runner moving fast along a mountain ridge path."
-      brief="Hero: trail runner (deck slide 1)"
-      ratio="4 / 5"
-      eager
-      sizes="(min-width: 900px) 45vw, 100vw"
-    />
   </div>
 </section>
 
 <style>
-  .hero { padding-block: clamp(3rem, 2rem + 5vw, 6.5rem); overflow: hidden; }
-  .inner { display: grid; gap: 2.5rem; align-items: center; }
-  @media (min-width: 900px) { .inner { grid-template-columns: 1.15fr 0.85fr; gap: 4rem; } }
+  .hero { position: relative; overflow: hidden; padding: 0; display: grid; }
+  .hero :global(.hero-img) { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 55% 40%; }
+  .inner { padding-block: 2.5rem 3.5rem; }
   h1 { max-width: 12ch; }
   .lede { margin-top: 1.5rem; color: var(--on-navy-muted); }
   .ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
   .copy :global(.btn--ghost) { color: var(--chalk); }
-  @media (max-width: 899px) { :global(.hero-photo) { aspect-ratio: 16 / 10 !important; } }
+
+  /* Desktop: the photo fills the whole hero and the copy sits over a navy fade on the left. */
+  @media (min-width: 900px) {
+    .hero { min-height: min(88vh, 860px); align-items: center; }
+    .hero :global(.hero-img) { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 50% 45%; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(90deg, rgba(0, 0, 54, 0.94) 0%, rgba(0, 0, 54, 0.85) 30%, rgba(0, 0, 54, 0.35) 52%, rgba(0, 0, 54, 0) 68%);
+    }
+    .inner { position: relative; z-index: 2; padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
+    .copy { max-width: 32rem; }
+    h1 { max-width: 10ch; }
+    .lede { color: var(--chalk); }
+  }
 </style>

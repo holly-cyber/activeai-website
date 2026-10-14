@@ -29,6 +29,11 @@ const steps = [
 </section>
 
 <style>
+  /* Keep the loop headline on one line on desktop; it wraps naturally on smaller screens. */
+  @media (min-width: 1040px) {
+    .section-head { max-width: none; }
+    h2 { white-space: nowrap; font-size: min(var(--step-3), 4.8vw); }
+  }
   .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
   @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 1040px) { .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); } }

@@ -41,14 +41,18 @@ const options = [
 </section>
 
 <style>
-  .opt { border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); background: var(--chalk); border: 1px solid var(--rule-light); display: grid; gap: 1rem; grid-template-rows: auto auto 1fr auto; }
+  /* Three columns are too narrow for the cards below 1040px, so stack them. */
+  @media (min-width: 760px) and (max-width: 1039px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .opt { border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); background: var(--chalk); border: 1px solid var(--rule-light); display: grid; gap: 1rem; grid-template-rows: auto auto 1fr auto; grid-template-columns: minmax(0, 1fr); container-type: inline-size; }
   .opt.o2 { background: var(--navy); color: var(--chalk); border-color: var(--navy); box-shadow: inset 0 4px 0 var(--electric); }
   .t { margin: 0; color: var(--accent-text); }
   .o2 .t { color: var(--on-navy-muted); }
   h3 { font-size: var(--step-3); }
   .lead { margin: 0; color: var(--ink-muted); }
   .o2 .lead { color: var(--on-navy-muted); }
-  .fit { margin: 0.5rem 0 0; padding: 0.8rem 1rem; border-radius: 999px; text-align: center; font-weight: 600; font-size: 0.95rem; background: #ebe6dc; }
+  .fit { margin: 0.5rem 0 0; padding: 0.8rem 1rem; border-radius: 999px; text-align: center; font-weight: 600; background: #ebe6dc;
+    /* Shrink to stay on one line inside the card. */
+    white-space: nowrap; font-size: clamp(0.7rem, calc((100cqi - 2rem) / 21), 0.95rem); }
   .o1 .fit { background: #e0f6ff; }
   .o2 .fit { background: var(--electric); color: var(--navy); }
   .closer { margin-top: 2.5rem; font-size: var(--step-1); font-weight: 600; max-width: 50ch; }

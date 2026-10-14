@@ -9,7 +9,7 @@ export const SITE = {
   url: 'https://weareactiveai.com',
   tagline: 'Turning athlete momentum into revenue.',
   description:
-    "The behavioural intelligence platform that keeps your customers active, and knows when they're ready to buy. Now choosing a small group of beta partners.",
+    "The behavioural intelligence platform that keeps your customers engaged, and knows when they're ready to buy. Now choosing a small group of beta partners.",
   ogImage: '/og.png',
 } as const;
 
