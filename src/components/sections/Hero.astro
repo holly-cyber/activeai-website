@@ -32,11 +32,21 @@ import heroImage from '../../assets/hero-trail-runner.jpg';
 
 <style>
   .hero { position: relative; overflow: hidden; padding: 0; display: grid; }
-  .hero :global(.hero-img) { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 55% 40%; }
-  .inner { padding-block: 2.5rem 3.5rem; }
-  h1 { max-width: 12ch; }
-  .lede { margin-top: 1.5rem; color: var(--on-navy-muted); }
-  .ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+  /* Phones: a shorter photo and a three-line headline, so the main button sits on the first screen. */
+  .hero :global(.hero-img) { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: 55% 35%; }
+  .inner { padding-block: 1.75rem 3rem; }
+  h1 { text-wrap: balance; }
+  .lede { margin-top: 1rem; color: var(--on-navy-muted); font-size: 1.1rem; }
+  .copy .eyebrow { margin-bottom: 0.75rem; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+  @media (min-width: 600px) {
+    .hero :global(.hero-img) { aspect-ratio: 16 / 9; }
+    .inner { padding-block: 2.5rem 3.5rem; }
+    h1 { max-width: 12ch; }
+    .lede { margin-top: 1.5rem; font-size: var(--step-1); }
+    .copy .eyebrow { margin-bottom: 1rem; }
+    .ctas { gap: 0.9rem; margin-top: 2rem; }
+  }
   .copy :global(.btn--ghost) { color: var(--chalk); }
 
   /* Desktop: the photo fills the whole hero and the copy sits over a navy fade on the left. */

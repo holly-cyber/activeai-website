@@ -61,7 +61,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
 .mono { font-family: var(--font-mono); letter-spacing: 0.08em; }
 .label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -109,7 +109,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
 .tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 0.25rem 0.55rem;
