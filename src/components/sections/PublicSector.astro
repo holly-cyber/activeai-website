@@ -55,6 +55,11 @@ const uses = [
     <div class="say">
       <p class="eyebrow">What the engine does</p>
       <h2 id="ps-engine-title">It finds the moment that keeps someone moving.</h2>
+      <p class="lede muted">
+        Councils, active travel teams, public health partners, sport governing bodies and physical activity partners use
+        the same momentum engine to get people moving and keep them moving. The moment it finds is not a sale. It is the
+        point where a nudge, a challenge or a crew keeps someone active.
+      </p>
     </div>
     <ul role="list" class="moments">
       {moments.map((m) => (
@@ -140,6 +145,7 @@ const uses = [
   .engine { display: grid; gap: 2rem; }
   .say h2 { max-width: 18ch; }
   @media (min-width: 1040px) { .say h2 { max-width: none; } }
+  .say .lede { margin: 1.25rem 0 0; max-width: 62ch; }
   .moments { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
   @media (min-width: 760px) { .moments { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; } }
   .moments li { background: var(--navy-2); border-top: 3px solid var(--electric); border-radius: 0 0 var(--radius) var(--radius); padding: 1.4rem 1.4rem 1.6rem; display: grid; gap: 0.6rem; align-content: start; }
