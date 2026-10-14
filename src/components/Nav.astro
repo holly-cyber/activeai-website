@@ -70,11 +70,11 @@ const path = Astro.url.pathname;
   li a { display: block; padding: 0.9rem 0; text-decoration: none; font-size: 1.1rem; border-bottom: 1px solid var(--rule-dark); }
   li a:hover, li a[aria-current='page'] { color: var(--gold); }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1200px) {
     .menu-toggle { display: none; }
     .menu, .menu.is-open { display: flex; position: static; padding: 0; border: 0; align-items: center; gap: 1.75rem; background: none; }
     ul { display: flex; gap: 1.6rem; margin: 0; }
-    li a { padding: 0.4rem 0; border: 0; font-size: 0.92rem; }
+    li a { padding: 0.4rem 0; border: 0; font-size: 0.92rem; white-space: nowrap; }
     .menu :global(.nav-cta) { padding: 0.7rem 1.1rem; font-size: 0.75rem; }
   }
 </style>
