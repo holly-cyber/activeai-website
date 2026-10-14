@@ -1,0 +1,90 @@
+---
+/*
+ * Public sector partners, with WeRoam as the worked example.
+ * WeRoam results are measured (not modelled) from its April–August 2026
+ * evaluation. Holly approved naming Kent County Council and publishing the
+ * figures (14 Oct 2026).
+ */
+const stats = [
+  { v: '5×', t: 'growth in users in five months, from 426 to 2,895' },
+  { v: '2×', t: 'six-week retention for people who joined through a campaign' },
+  { v: '9.5×', t: 'monthly activities at peak, against the pre-campaign average' },
+  { v: '1,373', t: 'person-weeks meeting the 150-minute activity guideline' },
+];
+const compare = [
+  { k: 'Brands', engine: 'Momentum finds the moment an athlete is ready to buy.', out: 'Revenue' },
+  { k: 'Public sector', engine: 'Momentum finds the moment a resident is ready to move more, or at risk of stopping.', out: 'Active, healthier residents' },
+];
+const uses = [
+  'Active travel: walking, wheeling and cycling, with journey purpose recorded',
+  'Physical activity for inactive residents, measured against the 150-minute guideline',
+  'School travel, place-based challenges and community campaigns',
+  'Monthly evaluation and a live view for funders and partners',
+];
+---
+<section id="public-sector" class="band band--navy ps" aria-labelledby="weroam-title">
+  <div class="wrap">
+    <div class="compare">
+      {compare.map((c) => (
+        <div class="row">
+          <p class="label who">{c.k}</p>
+          <p class="engine">{c.engine}</p>
+          <p class="out"><span aria-hidden="true">→</span> {c.out}</p>
+        </div>
+      ))}
+    </div>
+
+    <article class="case" aria-labelledby="weroam-title">
+      <div class="intro">
+        <p class="label ex">Example · WeRoam</p>
+        <h3 id="weroam-title">An active travel app for Kent County Council.</h3>
+        <p class="muted">
+          Kent County Council commissioned WeRoam to get more residents walking, wheeling and cycling, including people who are inactive. They record
+          journeys and why they made them, collect real local places and take part in challenges. It runs on the
+          Active AI engine.
+        </p>
+        <ul role="list" class="uses">{uses.map((u) => <li>{u}</li>)}</ul>
+      </div>
+      <div class="results">
+        <p class="label">Results, April to August 2026 <span class="tag-m">measured</span></p>
+        <dl>
+          {stats.map((s) => (
+            <div>
+              <dt>{s.v}</dt>
+              <dd>{s.t}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  /* Follows the page hero directly, so keep the top tight. */
+  .ps { padding-top: 0; }
+  .compare { display: grid; gap: 0.75rem; margin-bottom: 2.5rem; }
+  .row { display: grid; gap: 0.4rem 1.5rem; align-items: baseline; padding: 1rem 0; border-top: 1px solid var(--rule-dark); }
+  @media (min-width: 900px) { .row { grid-template-columns: 10rem 1fr 14rem; } }
+  .row p { margin: 0; }
+  .who { color: var(--gold); }
+  .engine { color: var(--on-navy-muted); }
+  .out { display: flex; gap: 0.5rem; align-items: baseline; line-height: 1.1; font-family: var(--font-display); font-size: var(--step-1); text-transform: uppercase; letter-spacing: 0.03em; }
+  .out span { color: var(--electric); }
+
+  .case { display: grid; gap: 2rem; background: var(--navy-2); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+  @media (min-width: 960px) { .case { grid-template-columns: 1.1fr 1fr; gap: 3rem; } }
+  .intro { display: grid; gap: 1rem; align-content: start; }
+  .intro p { margin: 0; }
+  .ex { color: var(--gold); }
+  h3 { font-size: var(--step-2); }
+  .uses { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+  .uses li { padding-left: 1.4rem; position: relative; }
+  .uses li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.6rem; height: 2px; background: var(--gold); }
+  .results .label { margin: 0 0 1rem; color: var(--on-navy-muted); }
+  .tag-m { color: var(--gold); border: 1px solid currentColor; border-radius: 4px; padding: 0.15rem 0.45rem; margin-left: 0.4rem; }
+  dl { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  dl div { border-top: 1px solid var(--rule-dark); padding-top: 0.75rem; }
+  dt { font-family: var(--font-display); font-size: clamp(2.4rem, 1.8rem + 2vw, 3.4rem); line-height: 1; color: var(--electric); }
+  dd { margin: 0.35rem 0 0; color: var(--on-navy-muted); font-size: 0.92rem; }
+</style>

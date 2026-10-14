@@ -47,12 +47,19 @@ export const CONTACT = {
 export const betaMailto = (): string =>
   `mailto:${CONTACT.email}?subject=${encodeURIComponent(CONTACT.subject)}&body=${encodeURIComponent(CONTACT.body)}`;
 
+/** Public sector enquiries: same inbox, their own subject line. */
+export const publicSectorMailto = (): string =>
+  `mailto:${CONTACT.email}?subject=${encodeURIComponent('Active AI public sector partnership')}&body=${encodeURIComponent(
+    ['Hi Holly,', '', "I'd like to talk about Active AI for a public sector programme.", '', 'Organisation:', 'My role:', 'What we have in mind:', '', 'Thanks,'].join('\n'),
+  )}`;
+
 export const CTA_LABEL = 'Become a beta partner';
 
 export const NAV = [
   { label: 'Platform', href: '/platform' },
   { label: 'How athletes engage', href: '/#engage' },
   { label: 'Beta programme', href: '/beta-partners' },
+  { label: 'Public sector', href: '/public-sector' },
   { label: 'About', href: '/about' },
 ] as const;
 

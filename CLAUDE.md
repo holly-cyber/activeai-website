@@ -41,7 +41,7 @@ This is a marketing site, not a platform component. It does not live in the mono
 - **No methodology anywhere in the repo or on the page**: no layer weights or point values, no formula, no thresholds, no band score ranges, no citations that would let someone rebuild the model. Signal layer and band *names* are fine. This applies to commit messages and PR descriptions too: describe withheld material by category, never by content.
 - Science section: theory names and at most researchers' surnames. No formulas, dates, journals, "Nobel"/"MIT", neurochemistry, and no link between a theory and how the score is built. Loss aversion is left out.
 - Athlete-care language stays in: plateau is a care signal, quiet weeks never count as zero, one location read per tap. No "exploit", "hook", "dopamine", "neurochemical window" or manufactured urgency.
-- No prospects or partners named anywhere. No invented testimonials, logos or sources.
+- No prospects or partners named anywhere, except Kent County Council on the public sector page (WeRoam case study, approved by Holly 14 Oct 2026). No invented testimonials, logos or sources.
 - Enquiries are `mailto:` only (prefilled subject and body from `site.ts`). No forms, no trackers, no cookie-setting scripts.
 
 `scripts/check-content.mjs` enforces the checkable parts of these rules on every build. Add to it when a new rule appears; never loosen it to get a build through.

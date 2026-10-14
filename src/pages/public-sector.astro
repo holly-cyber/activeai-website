@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PublicSector from '../components/sections/PublicSector.astro';
+import { publicSectorMailto, CONTACT } from '../config/site';
+---
+<Base
+  title="Public sector partners"
+  description="The Active AI momentum engine for councils, active travel and public health: getting people moving and keeping them moving. WeRoam shows how."
+>
+  <PageHero eyebrow="Public sector partners" title="Same engine. Different outcome.">
+    Councils, active travel teams and public health partners use the same momentum engine to get people moving and
+    keep them moving. The moment it finds is not a sale. It is the point where a nudge, a challenge or a crew keeps
+    someone active.
+  </PageHero>
+  <PublicSector />
+
+  <section class="band band--chalk" aria-labelledby="ps-next-title">
+    <div class="wrap next">
+      <p class="eyebrow">Next step</p>
+      <h2 id="ps-next-title">Got a programme to get people moving?</h2>
+      <p class="lede muted">Tell us about your residents and what you need to show your funders. We will come back with how the engine would work for you.</p>
+      <a class="btn btn--primary" href={publicSectorMailto()}>Talk to us <span aria-hidden="true">→</span></a>
+      <p class="muted small">Or email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .next { display: grid; gap: 1.25rem; justify-items: start; }
+  .next .eyebrow, .next p, .next h2 { margin: 0; }
+  .small { font-size: 0.9rem; }
+</style>
