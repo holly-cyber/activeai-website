@@ -53,6 +53,8 @@ const options = [
   .fit { margin: 0.5rem 0 0; padding: 0.8rem 1rem; border-radius: 999px; text-align: center; font-weight: 600; background: #ebe6dc;
     /* Shrink to stay on one line inside the card. */
     white-space: nowrap; font-size: clamp(0.7rem, calc((100cqi - 2rem) / 21), 0.95rem); }
+  /* Narrow phones: let it wrap rather than shrink below a readable size. */
+  @media (max-width: 400px) { .fit { white-space: normal; font-size: 0.85rem; } }
   .o1 .fit { background: #e0f6ff; }
   .o2 .fit { background: var(--electric); color: var(--navy); }
   .closer { margin-top: 2.5rem; font-size: var(--step-1); font-weight: 600; max-width: 50ch; }

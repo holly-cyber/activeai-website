@@ -50,17 +50,14 @@ const screen = (name: string) => {
 </section>
 
 <script>
-  // Tabs on desktop, stacked panels on mobile (and without JavaScript).
+  // Tabs at every width, so phones show one story at a time. Without JavaScript the panels stay stacked.
   const root = document.querySelector<HTMLElement>('[data-tabs]');
   if (root) {
     const list = root.querySelector<HTMLElement>('[role="tablist"]')!;
     const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
     const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')!)!);
-    const mq = window.matchMedia('(min-width: 900px)');
-    let current = 0;
 
     const select = (i: number, focus = false) => {
-      current = i;
       tabs.forEach((t, j) => {
         const on = j === i;
         t.setAttribute('aria-selected', String(on));
@@ -70,17 +67,8 @@ const screen = (name: string) => {
       if (focus) tabs[i].focus();
     };
 
-    const apply = () => {
-      if (mq.matches) {
-        list.hidden = false;
-        panels.forEach((p, j) => { p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[j].id); p.tabIndex = 0; });
-        select(current);
-      } else {
-        list.hidden = true;
-        panels.forEach((p, j) => { p.removeAttribute('role'); p.setAttribute('aria-labelledby', `h-${tabs[j].id.slice(4)}`); p.removeAttribute('tabindex'); p.hidden = false; });
-      }
-    };
-
+    list.hidden = false;
+    panels.forEach((p, j) => { p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', tabs[j].id); p.tabIndex = 0; });
     tabs.forEach((t, i) => {
       t.addEventListener('click', () => select(i));
       t.addEventListener('keydown', (e) => {
@@ -89,26 +77,27 @@ const screen = (name: string) => {
         if (next !== undefined) { e.preventDefault(); select(next, true); }
       });
     });
-    mq.addEventListener('change', apply);
-    apply();
+    select(0);
   }
 </script>
 
 <style>
   /* Let the intro run the full width on desktop. */
   @media (min-width: 1040px) { .section-head, .section-head .lede { max-width: none; } }
-  .tablist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 2.5rem; }
+  .tablist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-bottom: 1.75rem; }
+  @media (min-width: 900px) { .tablist { gap: 0.75rem; margin-bottom: 2.5rem; } }
   .tablist[hidden] { display: none; }
   [role='tab'] {
     display: grid; gap: 0.3rem; text-align: left; cursor: pointer; background: transparent; color: var(--chalk);
-    border: 1px solid var(--rule-dark); border-radius: var(--radius); padding: 1rem 1.25rem; font: inherit;
+    border: 1px solid var(--rule-dark); border-radius: var(--radius); padding: 0.75rem 0.7rem; font: inherit; align-content: start;
   }
+  @media (min-width: 900px) { [role='tab'] { padding: 1rem 1.25rem; } }
   [role='tab'] .label { color: var(--gold); }
-  .tt { font-family: var(--font-display); font-size: 1.8rem; line-height: 1; text-transform: uppercase; }
+  .tt { font-family: var(--font-display); font-size: clamp(1.3rem, 1rem + 1.5vw, 1.8rem); line-height: 1; text-transform: uppercase; }
   [role='tab'][aria-selected='true'] { background: var(--navy-3); border-color: var(--electric); box-shadow: inset 0 -3px 0 var(--electric); }
   [role='tab']:hover { border-color: var(--chalk); }
 
-  .panel { display: grid; gap: 2.5rem; align-items: center; padding-block: 2rem; border-top: 1px solid var(--rule-dark); }
+  .panel { display: grid; gap: 2rem; align-items: center; padding-block: 2rem; border-top: 1px solid var(--rule-dark); }
   .panel[hidden] { display: none; }
   .tablist:not([hidden]) ~ .panel { border-top: 0; padding-top: 0; }
   @media (min-width: 900px) { .panel { grid-template-columns: 1fr 1fr; gap: 4rem; } }
@@ -128,8 +117,15 @@ const screen = (name: string) => {
   .screens.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .screens :global(.phone) { max-width: 210px; }
   .screens.n2 :global(.phone:nth-child(2)) { margin-top: 2.5rem; }
-  @media (max-width: 520px) {
-    .screens.n3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .screens.n3 :global(.phone:nth-child(3)) { display: none; }
+  /* Phones: every screen in a swipeable row that bleeds to the screen edge. */
+  @media (max-width: 599px) {
+    .screens, .screens.n3 {
+      grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(58vw, 230px); justify-items: stretch;
+      overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin-inline: calc(-1 * var(--gutter)); padding: 0.5rem var(--gutter) 1.5rem; scroll-padding-inline: var(--gutter);
+    }
+    .screens::-webkit-scrollbar { display: none; }
+    .screens :global(.phone) { max-width: none; scroll-snap-align: start; }
+    .screens.n2 :global(.phone:nth-child(2)) { margin-top: 0; }
   }
 </style>

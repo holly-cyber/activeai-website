@@ -36,7 +36,7 @@
   --max: 1180px;
   --radius: 14px;
   --radius-lg: 22px;
-  --section-pad: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --section-pad: clamp(3.25rem, 2.25rem + 5vw, 7.5rem);
 }
 
 @media (min-width: 720px) {
