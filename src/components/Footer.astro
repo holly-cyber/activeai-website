@@ -9,6 +9,13 @@ const year = new Date().getFullYear();
       <Logo />
       <p class="muted small">Turning athlete momentum into revenue.</p>
       <p><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+      <iframe
+        class="cert"
+        title="Active AI certification, verified by Blockmark"
+        src="https://registry.blockmarktech.com/certificates/39cc8e56-9a90-4145-9b59-65f927f84e47/widget/?tooltip_position=bottom&theme=transparent"
+        style="border:none;height:132px;width:132px;"
+        loading="lazy"
+      ></iframe>
     </div>
     <nav aria-label="Footer">
       <ul role="list">
@@ -34,5 +41,6 @@ const year = new Date().getFullYear();
   a { color: var(--on-navy); text-decoration: none; }
   a:hover { color: var(--gold); text-decoration: underline; }
   .small { font-size: 0.85rem; margin-top: 0.75rem; }
+  .cert { display: block; margin-top: 1rem; }
   .legal { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule-dark); }
 </style>
