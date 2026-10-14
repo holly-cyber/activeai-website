@@ -91,31 +91,31 @@ const uses = [
   </div>
 </section>
 
-<section class="band band--navy" aria-labelledby="weroam-title">
+<section class="band band--navy weroam" aria-labelledby="weroam-title">
   <div class="wrap">
-    <article class="case" aria-labelledby="weroam-title">
-      <div class="intro">
-        <p class="label ex">Example · WeRoam</p>
-        <h3 id="weroam-title">An active travel app for Kent County Council.</h3>
-        <p class="muted">
-          Kent County Council commissioned Active AI to build WeRoam, to get more residents walking, wheeling and cycling, including people who are inactive. They record
-          journeys and why they made them, collect real local places and take part in challenges. It runs on the
-          Active AI engine.
-        </p>
+    <div class="section-head">
+      <p class="eyebrow">WeRoam results · April to August 2026 <span class="tag-m">measured</span></p>
+      <h2 id="weroam-title">An active travel app for Kent County Council.</h2>
+    </div>
+    <dl class="stats">
+      {stats.map((s) => (
+        <div>
+          <dt>{s.v}</dt>
+          <dd>{s.t}</dd>
+        </div>
+      ))}
+    </dl>
+    <div class="about">
+      <p class="muted">
+        Kent County Council commissioned Active AI to build WeRoam, to get more residents walking, wheeling and cycling, including people who are inactive. They record
+        journeys and why they made them, collect real local places and take part in challenges. It runs on the
+        Active AI engine.
+      </p>
+      <div>
+        <p class="label">What it covers</p>
         <ul role="list" class="uses">{uses.map((u) => <li>{u}</li>)}</ul>
       </div>
-      <div class="results">
-        <p class="label">Results, April to August 2026 <span class="tag-m">measured</span></p>
-        <dl>
-          {stats.map((s) => (
-            <div>
-              <dt>{s.v}</dt>
-              <dd>{s.t}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </article>
+    </div>
   </div>
 </section>
 
@@ -153,19 +153,19 @@ const uses = [
   .big { font-family: var(--font-display); font-size: var(--step-3); line-height: 1; text-transform: uppercase; letter-spacing: 0.02em; }
   .arrow { color: var(--electric); }
 
-  .case { display: grid; gap: 2rem; background: var(--navy-2); border-radius: var(--radius-lg); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
-  @media (min-width: 960px) { .case { grid-template-columns: 1.1fr 1fr; gap: 3rem; } }
-  .intro { display: grid; gap: 1rem; align-content: start; }
-  .intro p { margin: 0; }
-  .ex { color: var(--gold); }
-  h3 { font-size: var(--step-2); }
+  .weroam .section-head { max-width: none; }
+  .weroam h2 { max-width: 22ch; text-wrap: balance; }
+  .stats { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1.25rem; }
+  @media (min-width: 960px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; } }
+  .stats div { border-top: 1px solid var(--rule-dark); padding-top: 1rem; }
+  .about { display: grid; gap: 2rem; margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--rule-dark); }
+  @media (min-width: 960px) { .about { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .about p { margin: 0; }
+  .about .label { color: var(--gold); margin-bottom: 1rem; }
   .uses { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
   .uses li { padding-left: 1.4rem; position: relative; }
   .uses li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.6rem; height: 2px; background: var(--gold); }
-  .results .label { margin: 0 0 1rem; color: var(--on-navy-muted); }
-  .tag-m { color: var(--gold); border: 1px solid currentColor; border-radius: 4px; padding: 0.15rem 0.45rem; margin-left: 0.4rem; }
-  dl { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-  dl div { border-top: 1px solid var(--rule-dark); padding-top: 0.75rem; }
-  dt { font-family: var(--font-display); font-size: clamp(2.4rem, 1.8rem + 2vw, 3.4rem); line-height: 1; color: var(--electric); }
+  .tag-m { color: var(--gold); border: 1px solid currentColor; border-radius: 4px; padding: 0.15rem 0.45rem; margin-left: 0.6rem; letter-spacing: 0.1em; }
+  dt { font-family: var(--font-display); font-size: clamp(2.8rem, 2rem + 3vw, 4.5rem); line-height: 1; color: var(--electric); }
   dd { margin: 0.35rem 0 0; color: var(--on-navy-muted); font-size: 0.92rem; }
 </style>
