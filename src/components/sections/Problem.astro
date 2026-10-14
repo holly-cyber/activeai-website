@@ -1,15 +1,19 @@
 ---
 import Photo from '../Photo.astro';
+import runnerWatch from '../../assets/problem/runner-watch.jpg';
+import cyclist from '../../assets/problem/cyclist.jpg';
 const cols = [
   {
     title: 'Timing is the whole game',
     body: 'Your athlete just ran a personal best, and you send them the same email as everyone else. The moment they were ready to buy has already passed.',
-    photo: 'Runner checking a watch after a hard effort',
+    photo: 'A runner checking her watch at dusk after a hard effort.',
+    src: runnerWatch,
   },
   {
     title: 'Data without intelligence',
     body: 'Wearable, app and CRM data sit in separate systems. Nothing turns them into a live buying signal, and your view ends at checkout.',
-    photo: 'Athlete mid-session, kit and wearable visible',
+    photo: 'A road cyclist mid-ride on a mountain road.',
+    src: cyclist,
   },
 ];
 ---
@@ -22,7 +26,7 @@ const cols = [
     <div class="grid grid--3">
       {cols.map((c) => (
         <article>
-          <Photo alt={c.photo} brief={`Problem: ${c.photo}`} ratio="3 / 2" />
+          <Photo src={c.src} alt={c.photo} brief={`Problem: ${c.photo}`} ratio="3 / 2" />
           <h3 class="ruled">{c.title}</h3>
           <p class="muted">{c.body}</p>
         </article>
