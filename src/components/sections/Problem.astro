@@ -34,7 +34,7 @@ const cols = [
         <p class="source">Source: Klaviyo 2026 benchmarks, share of recipients who buy: automated flows vs campaigns.</p>
       </article>
     </div>
-    <p class="closer">Active AI moves sports brands from <strong>campaign-led</strong> selling to <strong>behaviour-led</strong> revenue.</p>
+    <p class="closer">Active AI moves sports brands from <strong class="nowrap">campaign-led</strong> selling to <strong class="nowrap">behaviour-led</strong> revenue.</p>
   </div>
 </section>
 
@@ -47,4 +47,7 @@ const cols = [
   .big { font-family: var(--font-mono); font-size: clamp(3.5rem, 2.5rem + 4vw, 5.5rem); line-height: 1; color: var(--gold); }
   .source { font-size: 0.8rem; color: var(--on-navy-muted); }
   .closer { margin-top: 3rem; font-size: var(--step-1); max-width: 40ch; }
+  .nowrap { white-space: nowrap; }
+  /* One line on desktop. */
+  @media (min-width: 1040px) { .closer { max-width: none; } }
 </style>
