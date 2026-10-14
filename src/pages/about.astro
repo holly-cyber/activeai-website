@@ -4,10 +4,9 @@ import PageHero from '../components/PageHero.astro';
 import CTAButton from '../components/CTAButton.astro';
 import Headshot from '../components/Headshot.astro';
 import { getCollection } from 'astro:content';
-import { COMPANY, CONTACT } from '../config/site';
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
 ---
-<Base title="About" description="The team behind Active AI: decades across sport, behaviour change, data and digital platforms. Active AI Ltd, Shap, Cumbria.">
+<Base title="About" description="The team behind Active AI: decades across sport, behaviour change, data and digital platforms.">
   <PageHero eyebrow="About Active AI" title="Built by people who have lived the problem.">
     Active AI brings together decades in sport, behaviour change, real-time data and consumer platforms, with one aim:
     help brands look after athletes well, and be there when it counts.
@@ -47,19 +46,7 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
     </div>
   </section>
 
-  <section class="band band--chalk" aria-labelledby="company-title">
-    <div class="wrap grid grid--2">
-      <div>
-        <p class="eyebrow">Company details</p>
-        <h2 id="company-title">{COMPANY.legalName}</h2>
-      </div>
-      <dl class="details">
-        <div><dt class="label">Registered</dt><dd>England and Wales</dd></div>
-        <div><dt class="label">Company number</dt><dd>{COMPANY.number}</dd></div>
-        <div><dt class="label">Address</dt><dd>{COMPANY.address}</dd></div>
-        <div><dt class="label">Contact</dt><dd><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></dd></div>
-      </dl>
-    </div>
+  <section class="band band--chalk">
     <div class="wrap cta"><CTAButton variant="primary" /></div>
   </section>
 </Base>
@@ -73,9 +60,4 @@ const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.
   .role { color: var(--accent-text); margin: 0.3rem 0 0.8rem; }
   .people p.muted { font-size: 0.95rem; }
   .story { font-size: var(--step-1); }
-  .details { margin: 0; display: grid; gap: 1rem; }
-  .details div { border-top: 1px solid var(--rule-light); padding-top: 0.75rem; }
-  .details dt { color: var(--ink-muted); }
-  .details dd { margin: 0.2rem 0 0; font-size: var(--step-1); }
-  .cta { margin-top: 3rem; }
 </style>
