@@ -95,6 +95,8 @@ const screen = (name: string) => {
 </script>
 
 <style>
+  /* Let the intro run the full width on desktop. */
+  @media (min-width: 1040px) { .section-head, .section-head .lede { max-width: none; } }
   .tablist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 2.5rem; }
   .tablist[hidden] { display: none; }
   [role='tab'] {
