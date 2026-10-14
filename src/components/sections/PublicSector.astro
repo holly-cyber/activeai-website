@@ -5,6 +5,34 @@
  * evaluation. Holly approved naming Kent County Council and publishing the
  * figures (14 Oct 2026).
  */
+import Phone from '../Phone.astro';
+import home from '../../assets/screens/weroam/home.png';
+import collection from '../../assets/screens/weroam/collection.png';
+import town from '../../assets/screens/weroam/town.png';
+import nearYou from '../../assets/screens/weroam/near-you.png';
+
+const screens = [
+  {
+    src: home, name: 'Home', k: 'Every minute counts',
+    t: 'Weekly progress towards the 150-minute guideline, with a streak to protect. One tap says whether a walk was a trip to work, school or the shops.',
+    alt: 'WeRoam home screen: 50 of 90 minutes this week towards the Kent 150, a two-week streak, and a prompt asking whether this morning’s walk was a trip somewhere.',
+  },
+  {
+    src: nearYou, name: 'Near you', k: 'Something to find today',
+    t: 'Local places, routes and gold drops on a map. The same set for everyone out today, so neighbours head for the same spots.',
+    alt: 'WeRoam Near you screen: a map of Maidstone with bronze places, a silver riverside route and a gold drop at Leeds Castle.',
+  },
+  {
+    src: collection, name: 'Collection', k: 'Places worth getting out for',
+    t: 'Residents collect real Kent places just by passing them. Hit 150 minutes and a rare place is revealed next week.',
+    alt: 'WeRoam Roam Collection screen: 312 places in Kent to collect, starting with three easy ones near Maidstone town centre.',
+  },
+  {
+    src: town, name: 'Town v town', k: 'Towns compete fairly',
+    t: 'Each town scores the share of its active residents who hit 150 minutes, so big and small towns compete on the same terms. No names, no totals.',
+    alt: 'WeRoam town versus town table: Maidstone top this week with 36% of active Roamers at 150 minutes, ahead of Canterbury and Ashford.',
+  },
+];
 const stats = [
   { v: '5×', t: 'growth in users in five months, from 426 to 2,895' },
   { v: '2×', t: 'six-week retention for people who joined through a campaign' },
@@ -22,7 +50,7 @@ const uses = [
   'Monthly evaluation and a live view for funders and partners',
 ];
 ---
-<section id="public-sector" class="band band--navy ps" aria-labelledby="weroam-title">
+<section id="public-sector" class="band band--navy ps" aria-label="How the engine serves brands and the public sector">
   <div class="wrap">
     <div class="compare">
       {compare.map((c) => (
@@ -33,7 +61,33 @@ const uses = [
         </div>
       ))}
     </div>
+  </div>
+</section>
 
+<section class="band band--chalk inside" aria-labelledby="inside-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Inside WeRoam</p>
+      <h2 id="inside-title">Built for residents, not athletes.</h2>
+      <p class="lede muted">The same engine as our brand apps, tuned for people who might not call themselves active. Small wins, local places and a little friendly rivalry.</p>
+    </div>
+    <ol role="list" class="screens">
+      {screens.map((sc, i) => (
+        <li>
+          <Phone screen={sc.name} alt={sc.alt} src={sc.src} />
+          <div class="cap">
+            <span class="n mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{sc.k}</h3>
+            <p class="muted">{sc.t}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="band band--navy" aria-labelledby="weroam-title">
+  <div class="wrap">
     <article class="case" aria-labelledby="weroam-title">
       <div class="intro">
         <p class="label ex">Example · WeRoam</p>
@@ -63,7 +117,24 @@ const uses = [
 <style>
   /* Follows the page hero directly, so keep the top tight. */
   .ps { padding-top: 0; }
-  .compare { display: grid; gap: 0.75rem; margin-bottom: 2.5rem; }
+  .compare { display: grid; gap: 0.75rem; }
+
+  /* Screens: a swipeable row on phones, four across on desktop. */
+  .screens { list-style: none; margin: -1rem -0.75rem 0; padding: 1rem 0.75rem 2rem; scroll-padding-inline: 0.75rem; display: grid; grid-auto-flow: column; grid-auto-columns: min(72vw, 260px); gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+  .screens li { scroll-snap-align: start; display: grid; gap: 1.25rem; align-content: start; }
+  .screens :global(.phone) { max-width: none; }
+  /* A tighter shadow so the swipe row does not clip it. */
+  .screens :global(.screen) { filter: drop-shadow(0 6px 8px rgba(0, 0, 54, 0.25)); }
+  .cap { display: grid; gap: 0.4rem; }
+  .cap p { margin: 0; font-size: 0.95rem; }
+  .cap .n { color: var(--gold-text); font-size: 0.8rem; }
+  .cap h3 { font-size: var(--step-1); letter-spacing: 0.03em; }
+  @media (min-width: 1040px) {
+    .screens { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-columns: auto; overflow: visible; gap: 2rem; padding: 0; margin: 0; }
+    .screens li:nth-child(even) { margin-top: 3rem; }
+    .screens :global(.screen) { filter: drop-shadow(0 18px 28px rgba(0, 0, 54, 0.35)); }
+  }
+
   .row { display: grid; gap: 0.4rem 1.5rem; align-items: baseline; padding: 1rem 0; border-top: 1px solid var(--rule-dark); }
   @media (min-width: 900px) { .row { grid-template-columns: 10rem 1fr 14rem; } }
   .row p { margin: 0; }
