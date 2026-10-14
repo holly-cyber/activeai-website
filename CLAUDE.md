@@ -49,7 +49,7 @@ This is a marketing site, not a platform component. It does not live in the mono
 ## Workflow and gates
 
 - Work on branches; every change arrives as a PR with a Netlify deploy preview.
-- **Stop at the push**: nothing reaches GitHub until Holly has seen the diff.
+- **Auto-merge** (Holly, 14 Oct 2026): once a PR's build and Netlify deploy preview pass, merge it without waiting to be asked. Merging updates the new Netlify site only, never weareactiveai.com.
 - **Deploy is a human gate**: do not link this repo to the live Netlify site (`weareactiveai.com`) or touch DNS/domain settings without Holly's explicit go-ahead.
 - `/privacy` and `/cookies` are ported word for word from the live site. Do not edit their wording; policy changes are Holly's call.
 - Report back in Holly's plain-English, outcome-first voice (`cindy-voice` skill).
